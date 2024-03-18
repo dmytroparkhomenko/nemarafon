@@ -13,7 +13,7 @@ const config: Config = {
           "linear-gradient(180deg, rgba(0,0,0,0) 8%, #392C27 36%, #23150F 70%, rgba(0,0,0,0) 100%)",
       },
       fontFamily: {
-        sans: ["Arial", "sans-serif"],
+        sans: ["Inter", "sans-serif"],
         titles: ["NEXT ART", "sans-serif"],
       },
       fontSize: {

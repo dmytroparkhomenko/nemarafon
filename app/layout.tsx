@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <StrictMode>
       <html lang="uk-UA">
-        <body className={inter.className}>
+        <body className={`overflow-x-hidden ${inter.className}`}>
           <main className="wrapper">{children}</main>
         </body>
       </html>

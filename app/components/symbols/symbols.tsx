@@ -43,6 +43,7 @@ export const Burger: React.FC<BurgerProps> = ({ onClick, burgerState }) => {
 export function Exclamation() {
   return (
     <svg
+      className="max-w-[18px] md:max-w-full"
       width="32"
       height="123"
       viewBox="0 0 32 123"

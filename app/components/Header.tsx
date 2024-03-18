@@ -46,7 +46,7 @@ export default function Header() {
       <div className="w-full md:w-2/5 mt-24 m-auto">
         <div className="flex flex-row items-center gap-5 md:gap-0 md:justify-center">
           <Exclamation />
-          <h1 className="text-2xl md:text-4xl text-left md:text-center leading-tight md:leading-[3rem] font-titles font-bold uppercase">
+          <h1 className="w-8/12 md:w-full text-2xl md:text-4xl text-left md:text-center leading-tight md:leading-[3rem] font-titles font-bold uppercase">
             Науковий підхід до створення тіла
           </h1>
           {isMobile ? null : <Exclamation />}

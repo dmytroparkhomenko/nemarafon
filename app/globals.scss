@@ -21,3 +21,10 @@ h2 {
   filter: blur(65px);
   fill: #0a9393;
 }
+
+@media screen and (max-width: 768px) {
+  .elipse {
+    max-width: 100%;
+    width: 100%;
+  }
+}
