@@ -1,0 +1,23 @@
+@import url("https://fonts.cdnfonts.com/css/next-art");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+h2 {
+  @apply uppercase text-center tracking-wide text-marine font-normal font-titles;
+}
+
+.elipse {
+  position: absolute;
+  z-index: 0;
+  left: -20px;
+  border-radius: 100%;
+  filter: blur(65px);
+  fill: #0a9393;
+}
