@@ -5,6 +5,10 @@ interface BurgerProps {
   burgerState: boolean;
 }
 
+interface ElipseProps {
+  styles: string;
+}
+
 export const Burger: React.FC<BurgerProps> = ({ onClick, burgerState }) => {
   return (
     <button onClick={onClick}>
@@ -418,15 +422,13 @@ export function InstagramLogo() {
   );
 }
 
-export function Elipse() {
+export const Elipse: React.FC<ElipseProps> = ({ styles }) => {
   return (
     <svg
-      width="900"
-      height="900"
       viewBox="0 0 1030 1001"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="elipse"
+      className={`elipse ${styles}`}
     >
       <g filter="url(#filter0_f_18_106)">
         <ellipse
@@ -463,4 +465,4 @@ export function Elipse() {
       </defs>
     </svg>
   );
-}
+};

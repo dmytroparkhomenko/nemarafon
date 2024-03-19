@@ -1,5 +1,6 @@
 import Header from "@/app/components/Header";
 import { Elipse } from "./components/symbols/symbols";
+import WhyMeItem from "./components/WhyMeItem";
 
 export default function Home() {
   return (
@@ -7,10 +8,12 @@ export default function Home() {
       <div className="relative h-screen overflow-y-auto">
         <div className="absolute w-full h-[100vh] md:h-[200vh] bg-cover bg-top z-0 bg-[url('/sources/main-mobile-bg.png')] md:bg-[url('/sources/main-bg.png')]" />
         <div className="absolute top-0 w-full z-10 h-[2000px] md:h-[4300px] bg-main-screen-gradient" />
-        <div className="relative z-20 px-5 md:px-24 py-12 md:py-16">
+        <div className="relative z-10 px-5 md:px-24 py-12 md:py-16">
           <Header />
-          <section>
-            <Elipse />
+          <section className="mb-24 md:mb-56">
+            <Elipse
+              styles={"w-[900px] h-[900px] hidden md:block blur-[65px]"}
+            />
             <h2 className="mb-10 md:mb-28 text-2xl md:text-4xl">Про мене</h2>
             <div className="flex flex-col md:flex-row items-center">
               <div className="flex justify-center w-full md:w-1/2">
@@ -35,6 +38,37 @@ export default function Home() {
                   Не просто створити ідеальні та сексуальні форми, а й змінити
                   ваше ставлення до тренувань та харчування
                 </h5>
+              </div>
+            </div>
+          </section>
+          <section className="relative">
+            <div className="md:hidden">
+              <Elipse
+                styles={
+                  "w-full max-m-[500px] h-[250px] blur-md rotate-[120deg] top-[-90px] left-0"
+                }
+              />
+              <h2 className="text-ivory text-2xl md:text-4xl font-titles font-bold tracking-wide mb-16">
+                Чому саме я?
+              </h2>
+            </div>
+            <div className="border-b border-t border-ivory py-5 md:py-16 relative uppercase text-ivory flex justify-center">
+              <Elipse
+                styles={
+                  "hidden md:block w-full h-full inset-0 rotate-[120deg] blur-none"
+                }
+              />
+              <div className="hidden md:block absolute left-[-130px] right-0 inset-y-1/2">
+                <div className="w-fit -rotate-90">
+                  <span className="text-2xl md:text-4xl font-titles font-bold tracking-wide">
+                    Чому саме я?
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center max-w-[750px] w-full z-10">
+                <WhyMeItem />
+                <WhyMeItem />
+                <WhyMeItem />
               </div>
             </div>
           </section>

@@ -25,6 +25,7 @@ export default function Header() {
 
   return (
     <div className="min-h-screen">
+      {(isNavbarOpen || !isMobile) && <Navbar />}
       <header className="flex flex-row w-full justify-between items-center">
         <div className={`order-1 ${isMobile ? "md:order-none" : ""}`}>
           {isMobile ? (
@@ -64,7 +65,6 @@ export default function Header() {
           Комплексні програми з унікальними умовами участі та зворотним зв’язком
         </p>
       </div>
-      {(isNavbarOpen || !isMobile) && <Navbar />}
     </div>
   );
 }
