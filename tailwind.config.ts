@@ -15,6 +15,7 @@ const config: Config = {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         titles: ["NEXT ART", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
       fontSize: {
         "2xl": "1.75rem", // For h1

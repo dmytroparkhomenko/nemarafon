@@ -25,7 +25,12 @@ export default function Header() {
 
   return (
     <div className="min-h-screen">
-      {(isNavbarOpen || !isMobile) && <Navbar />}
+      {(isNavbarOpen || !isMobile) && (
+        <Navbar
+          navStyles="absolute top-[85px] md:top-[7%] w-[90%] md:w-fit bg-marine md:bg-transparent"
+          ulStyles={"flex-col gap-6"}
+        />
+      )}
       <header className="flex flex-row w-full justify-between items-center">
         <div className={`order-1 ${isMobile ? "md:order-none" : ""}`}>
           {isMobile ? (
@@ -38,7 +43,11 @@ export default function Header() {
           )}
         </div>
         <div className={`order-2 ${isMobile ? "block" : "md:order-none"}`}>
-          {isMobile ? <Logo /> : <LogoMobile />}
+          {isMobile ? (
+            <LogoMobile isCentered={false} />
+          ) : (
+            <Logo isCentered={false} />
+          )}
         </div>
         <div className={`order-3 ${isMobile ? "block" : "md:hidden block"}`}>
           <Burger onClick={toggleNavbar} burgerState={isNavbarOpen} />

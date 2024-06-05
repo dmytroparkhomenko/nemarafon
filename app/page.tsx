@@ -1,11 +1,25 @@
-import Header from "@/app/components/Header";
-import { Elipse } from "./components/symbols/symbols";
-import WhyMeItem from "./components/WhyMeItem";
+"use server";
 
-export default function Home() {
+import { ProgramCardProps } from "@/interfaces/interfaces";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import Programs from "@/app/program/page";
+import WhyMeItem from "./components/WhyMeItem";
+import Heading from "./components/Heading";
+
+import { Elipse } from "./components/symbols/symbols";
+import Reviews from "./components/Reviews";
+import Results from "./components/Results";
+
+import { getPrograms } from "@/api/programs-fetching/index";
+
+export default async function Home() {
+  const posts: ProgramCardProps = await getPrograms();
+  console.log(posts);
+
   return (
     <>
-      <div className="relative h-screen overflow-y-auto">
+      <div className="relative h-screen overflow-y-auto bg-[#140702]">
         <div className="absolute w-full h-[100vh] md:h-[200vh] bg-cover bg-top z-0 bg-[url('/sources/main-mobile-bg.png')] md:bg-[url('/sources/main-bg.png')]" />
         <div className="absolute top-0 w-full z-10 h-[2000px] md:h-[4300px] bg-main-screen-gradient" />
         <div className="relative z-10 px-5 md:px-24 py-12 md:py-16">
@@ -14,7 +28,7 @@ export default function Home() {
             <Elipse
               styles={"w-[900px] h-[900px] hidden md:block blur-[65px]"}
             />
-            <h2 className="mb-10 md:mb-28 text-2xl md:text-4xl">Про мене</h2>
+            <Heading>Про мене</Heading>
             <div className="flex flex-col md:flex-row items-center">
               <div className="flex justify-center w-full md:w-1/2">
                 <img
@@ -67,12 +81,14 @@ export default function Home() {
               </div>
               <div className="flex flex-col justify-center max-w-[750px] w-full z-10">
                 <WhyMeItem />
-                <WhyMeItem />
-                <WhyMeItem />
               </div>
             </div>
           </section>
+          <Programs programs={posts} />
+          <Results />
+          <Reviews />
         </div>
+        <Footer />
       </div>
     </>
   );
