@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface NavbarProps {
   navStyles: string;
@@ -12,19 +13,19 @@ export default function Navbar({ navStyles, ulStyles }: NavbarProps) {
     >
       <ul className={`flex ${ulStyles}`}>
         <li>
-          <a href="#">ПРО МЕНЕ</a>
+          <Link href="#">ПРО МЕНЕ</Link>
         </li>
         <li>
-          <a href="#">ПРОГРАМИ</a>
+          <Link href="#">ПРОГРАМИ</Link>
         </li>
         <li>
-          <a href="#">НЕМАРАФОН 2024</a>
+          <Link href="#">НЕМАРАФОН 2024</Link>
         </li>
         <li>
-          <a href="#">ВІДГУКИ</a>
+          <Link href="#">ВІДГУКИ</Link>
         </li>
         <li>
-          <a href="#">КОНТАКТИ</a>
+          <Link href="#">КОНТАКТИ</Link>
         </li>
       </ul>
     </nav>

@@ -1,3 +1,3 @@
-export default function Profile() {
-  return <div></div>;
+export default async function Profile() {
+  return <>123</>;
 }

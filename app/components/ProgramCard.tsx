@@ -51,7 +51,7 @@ export default function ProgramCard({
           <div className="text-4xl font-light font-montserrat">
             ₴ {programFields.programPrice}
           </div>
-          <Button>обрати програму</Button>
+          <Button href={`/program/${uri}`}>обрати програму</Button>
         </div>
       </div>
     </div>

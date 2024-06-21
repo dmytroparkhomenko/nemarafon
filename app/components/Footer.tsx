@@ -7,7 +7,7 @@ import Mastercard from "./symbols/Mastercard.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-full px-5 md:px-24 py-12 md:py-16 bg-cover bg-right z-0 bg-[url('/sources/footer-bg.png')]">
+    <footer className="w-full px-5 md:px-24 py-12 md:py-16 bg-cover bg-right z-0 bg-[url('/sources/footer-bg.jpg')]">
       <div className="hidden md:block mx-auto">
         <Logo isCentered={true} />
       </div>

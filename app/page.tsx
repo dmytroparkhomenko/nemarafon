@@ -11,19 +11,16 @@ import { Elipse } from "./components/symbols/symbols";
 import Reviews from "./components/Reviews";
 import Results from "./components/Results";
 
-import { getPrograms } from "@/api/programs-fetching/index";
-
 export default async function Home() {
-  const posts: ProgramCardProps = await getPrograms();
-  console.log(posts);
-
   return (
     <>
       <div className="relative h-screen overflow-y-auto bg-[#140702]">
-        <div className="absolute w-full h-[100vh] md:h-[200vh] bg-cover bg-top z-0 bg-[url('/sources/main-mobile-bg.png')] md:bg-[url('/sources/main-bg.png')]" />
+        <div className="absolute w-full h-[100vh] md:h-[200vh] bg-cover bg-top z-0 bg-[url('/sources/main-mobile-bg.jpg')] md:bg-[url('/sources/main-bg.jpg')]" />
         <div className="absolute top-0 w-full z-10 h-[2000px] md:h-[4300px] bg-main-screen-gradient" />
         <div className="relative z-10 px-5 md:px-24 py-12 md:py-16">
-          <Header />
+          <div className="min-h-screen">
+            <Header />
+          </div>
           <section className="mb-24 md:mb-56">
             <Elipse
               styles={"w-[900px] h-[900px] hidden md:block blur-[65px]"}
@@ -33,7 +30,7 @@ export default async function Home() {
               <div className="flex justify-center w-full md:w-1/2">
                 <img
                   className="w-full max-w-[500px] rounded-[15px] md:rounded-[50px] z-10"
-                  src="/sources/about-me.png"
+                  src="/sources/about-me.jpg"
                   alt="About me"
                 />
               </div>
@@ -84,7 +81,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-          <Programs programs={posts} />
+          <Programs />
           <Results />
           <Reviews />
         </div>

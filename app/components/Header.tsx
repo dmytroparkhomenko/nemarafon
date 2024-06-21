@@ -24,7 +24,7 @@ export default function Header() {
     setIsNavbarOpen((isNavbarOpen: boolean) => !isNavbarOpen);
 
   return (
-    <div className="min-h-screen">
+    <>
       {(isNavbarOpen || !isMobile) && (
         <Navbar
           navStyles="absolute top-[85px] md:top-[7%] w-[90%] md:w-fit bg-marine md:bg-transparent"
@@ -66,7 +66,7 @@ export default function Header() {
           з причиною, а не з симптомами
         </p>
         <div className="flex justify-center button">
-          <Button>Обрати програму</Button>
+          <Button href="/program">Обрати програму</Button>
         </div>
       </div>
       <div className="w-11/12 md:w-fit md:float-right mt-28 md:mt-48 border-b border-b-marine mx-auto">
@@ -74,6 +74,34 @@ export default function Header() {
           Комплексні програми з унікальними умовами участі та зворотним зв’язком
         </p>
       </div>
-    </div>
+    </>
+  );
+}
+
+export function HeaderProgramPage() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  return (
+    <>
+      <header className="flex flex-row w-full justify-between items-center">
+        <div className={`order-1`}>
+          {isMobile ? (
+            <LogoMobile isCentered={false} />
+          ) : (
+            <Logo isCentered={false} />
+          )}
+        </div>
+        <div className={`order-2`}>
+          {isMobile ? (
+            <ProfileMobile />
+          ) : (
+            <div className="flex flex-row items-center gap-10">
+              <InstagramLogo />
+              <Profile />
+            </div>
+          )}
+        </div>
+      </header>
+    </>
   );
 }

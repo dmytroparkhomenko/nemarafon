@@ -5,11 +5,16 @@ export async function getPrograms() {
         nodes {
           uri
           title
+          content
           programFields {
             programPrice
             programDescription {
               __typename
               programDescriptionItem
+            }
+            programContent {
+              __typename
+              programVideoLink
             }
           }
         }

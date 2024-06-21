@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { StrictMode } from "react";
 
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
 import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +20,7 @@ export default function RootLayout({
     <StrictMode>
       <html lang="uk-UA">
         <body className={`overflow-x-hidden ${inter.className}`}>
-          <main className="wrapper">{children}</main>
+          <main className="wrapper ">{children}</main>
         </body>
       </html>
     </StrictMode>
