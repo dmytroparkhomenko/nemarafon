@@ -19,3 +19,14 @@ export interface ProgramCardProps {
 export interface ScrollPointersProps {
   containerRef: RefObject<HTMLDivElement>;
 }
+
+export interface SessionUser {
+  email: string;
+  image: string;
+  name: string;
+}
+
+export interface Session {
+  user?: SessionUser;
+  expires?: string;
+}

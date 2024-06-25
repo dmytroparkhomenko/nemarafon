@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "nemarafon-427120",
+    "nemarafon": "nemarafon-427120"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

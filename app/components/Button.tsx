@@ -1,21 +1,30 @@
 import Link from "next/link";
+import { MouseEventHandler, ReactNode } from "react";
 
 interface ButtonProps {
-  href: string;
-  children: any;
+  href?: string;
+  className?: string;
+  type?: string;
+  children: ReactNode;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-export default function Button(props: ButtonProps) {
+export default function Button({
+  href,
+  children,
+  onClick,
+  className,
+  type,
+}: ButtonProps) {
   return (
     <Link
-      className={
-        "w-full md:w-2/3 mt-9 py-[6px] md:py-[8px] bg-marine rounded-full text-center"
-      }
-      href={props.href}
+      href={href || "#"}
+      passHref
+      type={type || "button"}
+      onClick={onClick}
+      className={`py-[6px] md:py-[8px] bg-marine rounded-full text-center font-light text-[20px] uppercase ${className}`}
     >
-      <button className="font-light text-[20px] uppercase">
-        {props.children}
-      </button>
+      {children}
     </Link>
   );
 }

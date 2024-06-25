@@ -18,6 +18,14 @@ h3 {
   @apply uppercase text-center tracking-wide text-marine font-normal font-titles text-xl;
 }
 
+h5 {
+  @apply text-gold font-titles uppercase text-lg tracking-wide;
+}
+
+p {
+  @apply font-light;
+}
+
 .elipse {
   position: absolute;
   z-index: 0;

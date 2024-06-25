@@ -8,7 +8,7 @@ import { ProgramCardProps } from "@/interfaces/interfaces";
 
 import { HeaderProgramPage } from "@/app/components/Header";
 
-import { getPrograms } from "@/api/programs-fetching/index";
+import { getPrograms } from "@/app/api/programs-fetching/index";
 import ProgramNavigator from "./ProgramNavigator";
 
 export default async function ProgramPage({ params }: any) {
@@ -25,7 +25,7 @@ export default async function ProgramPage({ params }: any) {
         <HeaderProgramPage />
         <div className="flex flex-col md:flex-row justify-between md:py-6">
           <nav
-            className={`w-full md:w-1/3 my-[30px] md:mt-[-50px] justify-center flex flex-col md:p-0 font-titles font-light`}
+            className={`w-full md:w-1/3 my-[30px] justify-center flex flex-col md:p-0 font-titles font-light md:mt-[-50px]`} // md:mt-[-50px]
           >
             <ul
               className={`flex flex-row md:flex-col gap-8 text-sm md:text-lg justify-center items-center md:items-start`}
@@ -42,7 +42,7 @@ export default async function ProgramPage({ params }: any) {
                 <Link href="/profile/">Профіль</Link>
               </li>
               <li>
-                <Link href="../">Вийти</Link>
+                <Link href="../">Головна</Link>
               </li>
             </ul>
           </nav>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 
 import Arrow from "@/app/components/symbols/Arrow.svg";
 
@@ -22,36 +22,38 @@ export default function ProgramNavigator({ post }: any) {
         <VideoEmbed embedId={content[currentVideoId].programVideoLink} />
       </Suspense>
       <div className="flex justify-between mt-2">
-        {currentVideoId <= 0 ? null : (
-          <a
-            className="flex items-center gap-1 text-sm cursor-pointer"
-            onClick={() => setVideoId(currentVideoId - 1)}
-          >
-            <Image
-              src={Arrow}
-              alt="arrow left"
-              className="cursor-pointer transform w-6 color-white"
-            />
-            <span className="font-light">Попереднє відео</span>
-          </a>
-        )}
+        <a
+          className="flex items-center gap-1 text-sm cursor-pointer"
+          onClick={() =>
+            currentVideoId <= 0 ? null : setVideoId(currentVideoId - 1)
+          }
+        >
+          <Image
+            src={Arrow}
+            alt="arrow left"
+            className="cursor-pointer transform w-6 color-white"
+          />
+          <span>Попереднє відео</span>
+        </a>
         <span className="uppercase text-gold text-sm md:text-[18px]">
           {/* #{currentVideoId + 1} */}
           Назва лекції
         </span>
-        {currentVideoId === content.length - 1 ? null : (
-          <a
-            className="flex items-center gap-1 text-sm cursor-pointer"
-            onClick={() => setVideoId(currentVideoId + 1)}
-          >
-            <span className="font-light">Наступне відео</span>
-            <Image
-              src={Arrow}
-              alt="arrow right"
-              className="cursor-pointer transform rotate-180 w-6 color-white"
-            />
-          </a>
-        )}
+        <a
+          className="flex items-center gap-1 text-sm cursor-pointer"
+          onClick={() =>
+            currentVideoId === content.length - 1
+              ? null
+              : setVideoId(currentVideoId + 1)
+          }
+        >
+          <span>Наступне відео</span>
+          <Image
+            src={Arrow}
+            alt="arrow right"
+            className="cursor-pointer transform rotate-180 w-6 color-white"
+          />
+        </a>
       </div>
     </div>
   );

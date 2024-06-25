@@ -16,10 +16,7 @@ export default function Footer() {
       </div>
       <Navbar navStyles="my-20" ulStyles={"justify-center gap-20"} />
       <div className="flex flex-col text-center md:mb-10">
-        <a className="text-ivory" href="#">
-          Договiр публiчної оферти
-        </a>
-        <div className="flex justify-center gap-4 mt-7 text-marine uppercase text-lg font-light">
+        <div className="flex justify-center gap-6 text-marine uppercase text-lg font-light">
           <a className="" href="#">
             INSTAGRAM
           </a>
@@ -44,6 +41,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col gap-3 text-gray-500 mt-6">
+        <a href="#">Договiр публiчної оферти </a>
         <a href="#">Політика використання файлів cookie умови користування</a>
         <a href="#">Політика конфіденційності </a>
       </div>

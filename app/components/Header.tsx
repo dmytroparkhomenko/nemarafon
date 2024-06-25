@@ -14,6 +14,7 @@ import {
   Exclamation,
   InstagramLogo,
 } from "@/app/components/symbols/symbols";
+import Link from "next/link";
 
 export default function Header() {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -34,10 +35,26 @@ export default function Header() {
       <header className="flex flex-row w-full justify-between items-center">
         <div className={`order-1 ${isMobile ? "md:order-none" : ""}`}>
           {isMobile ? (
-            <ProfileMobile />
+            <>
+              <ProfileMobile />
+            </>
           ) : (
             <div className="flex flex-row items-center gap-10">
               <InstagramLogo />
+              <div className="langs flex gap-5">
+                <Link
+                  href="#"
+                  className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
+                >
+                  UA
+                </Link>
+                <Link
+                  href="#"
+                  className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
+                >
+                  EN
+                </Link>
+              </div>
               <Profile />
             </div>
           )}
@@ -66,7 +83,9 @@ export default function Header() {
           з причиною, а не з симптомами
         </p>
         <div className="flex justify-center button">
-          <Button href="/program">Обрати програму</Button>
+          <Button className="mt-9 md:w-2/3" href="/program">
+            Обрати програму
+          </Button>
         </div>
       </div>
       <div className="w-11/12 md:w-fit md:float-right mt-28 md:mt-48 border-b border-b-marine mx-auto">
@@ -97,6 +116,20 @@ export function HeaderProgramPage() {
           ) : (
             <div className="flex flex-row items-center gap-10">
               <InstagramLogo />
+              <div className="langs flex gap-5">
+                <Link
+                  href="#"
+                  className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
+                >
+                  UA
+                </Link>
+                <Link
+                  href="#"
+                  className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
+                >
+                  EN
+                </Link>
+              </div>
               <Profile />
             </div>
           )}

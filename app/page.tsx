@@ -1,6 +1,5 @@
 "use server";
 
-import { ProgramCardProps } from "@/interfaces/interfaces";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import Programs from "@/app/program/page";
@@ -45,7 +44,7 @@ export default async function Home() {
                 <h3 className="uppercase text-gold mt-10 mb-4 text-lg md:text-xl font-light text-center md:text-left">
                   Моя місія
                 </h3>
-                <h5 className="uppercase font-light text-base md:text-lg leading-tight">
+                <h5 className="uppercase font-light text-base md:text-lg leading-tight text-white">
                   Не просто створити ідеальні та сексуальні форми, а й змінити
                   ваше ставлення до тренувань та харчування
                 </h5>
