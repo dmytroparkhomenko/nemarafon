@@ -14,7 +14,7 @@ export default function Reviews() {
   const scrollReviewsContainerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="mt-40 mb-20">
+    <section id="reviews" className="mt-40 mb-20">
       <Heading>Відгуки</Heading>
       <div
         className="flex items-center md:items-start flex-row overflow-x-auto space-x-6 scroll-smooth mt-10 gap-5 md:gap-10"
@@ -30,7 +30,7 @@ export default function Reviews() {
             <div className="font-medium text-2xl">Макс</div>
             <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-7">
               <div className="md:text-lg font-light">План харчування</div>
-              <div className="flex">
+              <div className="flex flex-row">
                 {[...Array(5)].map((_, i) => (
                   <Image
                     key={i}

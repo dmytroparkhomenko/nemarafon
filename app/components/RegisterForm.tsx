@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+
 import Image from "next/image";
 import GoogleIcon from "@/app/components/symbols/GoogleIcon.svg";
-
-import Button from "../components/Button";
 import EyeIcon from "../components/symbols/Eye.svg";
-
-// import { signIn } from "next-auth/react";
 
 interface LoginFormProps {
   switchToLogin: () => void;
@@ -23,48 +21,34 @@ import { signInWithGoogle } from "../firebase/auth";
 const auth = getAuth(firebaseApp);
 
 const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
+  // const router = useRouter();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [confirmationPassword, setConfirmationPassword] = useState("");
+  const [showPasswords, setShowPasswords] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword); // rewrite
-  };
 
   const handleManualSignUp = (event: React.FormEvent) => {
     event.preventDefault();
-    setError(null);
+
+    if (password !== confirmationPassword) {
+      setError("The passwords are not equal. Check it again.");
+      return;
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Once the user is created, update their profile with the displayName
-        return updateProfile(userCredential.user, {
-          displayName: name,
-        }).then(() => {
-          // After successful profile update, continue
-          console.log(
-            "User registered with display name:",
-            userCredential.user.displayName
-          );
-          return userCredential.user;
-        });
+        return updateProfile(userCredential.user, { displayName: name });
+      })
+      .then(() => {
+        // router.push("/g");
       })
       .catch((error) => {
-        // Handle any errors from either createUserWithEmailAndPassword or updateProfile
         setError("Failed to sign up. Please check your credentials.");
         console.error("Error registering with email and password", error);
       });
-  };
-
-  // duplicate
-  const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (error) {
-      setError("Failed to sign in with Google.");
-    }
   };
 
   return (
@@ -109,7 +93,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
             <input
               className="shadow appearance-none border rounded-full w-full py-[0.8rem] px-[1.25rem] text-white bg-transparent leading-tight focus:outline-none focus:shadow-outline"
               id="password"
-              type={showPassword ? "text" : "password"}
+              type={showPasswords ? "text" : "password"}
               placeholder="•••••••••••••"
               value={password}
               autoComplete="current-password"
@@ -117,7 +101,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
             />
             <div
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer mt-[1.9rem] mr-1"
-              onClick={handleTogglePassword}
+              onClick={() => setShowPasswords(!showPasswords)}
             >
               <Image src={EyeIcon} alt="Show password" width={20} height={20} />
             </div>
@@ -125,25 +109,25 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
               *пароль має містити цифри та великі літери
             </p> */}
           </div>
-          {/* <div className="mb-4 relative">
+          <div className="mb-4 relative">
             <label className="block mb-2" htmlFor="confirm-password">
               Повторіть пароль
             </label>
             <input
               className="shadow appearance-none border rounded-full w-full py-[0.8rem] px-[1.25rem] text-white bg-transparent leading-tight focus:outline-none focus:shadow-outline"
               id="confirm-password"
-              type={showPassword ? "text" : "password"}
+              type={showPasswords ? "text" : "password"}
               placeholder="•••••••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={confirmationPassword}
+              onChange={(e) => setConfirmationPassword(e.target.value)}
             />
             <div
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer mt-[1.9rem] mr-1"
-              onClick={handleTogglePassword}
+              onClick={() => setShowPasswords(!showPasswords)}
             >
               <Image src={EyeIcon} alt="Show password" width={20} height={20} />
             </div>
-          </div> */}
+          </div>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <div className="flex flex-col items-center justify-between">
             <button
@@ -156,8 +140,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
           <div className="flex flex-col items-center justify-between mt-6">
             <span className="mb-2">Зареєструватись за допомогою</span>
             <button
-              onSubmit={handleGoogleSignIn}
-              type="submit"
+              onClick={signInWithGoogle}
               className="py-[6px] md:py-[8px] bg-marine rounded-full text-center font-light text-[20px] uppercase flex gap-2 justify-center w-2/3"
             >
               <Image

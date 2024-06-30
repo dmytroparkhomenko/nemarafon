@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import DefaultUserProfileImage from "@/public/sources/temp/review.png";
 import Button from "@/app/components/Button";
 import { useAuth } from "../AuthContext";
 import { User } from "firebase/auth";
+import { ProgramCardProps } from "@/interfaces/interfaces";
+import { getPrograms } from "@/app/api/programs-fetching/index";
 
 interface UserProfileProps {
   user: User;
+  program: any;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
+const UserProfile: React.FC<UserProfileProps> = async ({ user, program }) => {
   const { signOut } = useAuth();
 
-  // console.log(user);
+  const posts: ProgramCardProps[] = await getPrograms();
+  const post: ProgramCardProps | undefined = posts.find(
+    (post) => post.uri === `/${program.uri}/`
+  );
 
   return (
     <div className="user profile flex flex-col md:flex-row w-full gap-10 md:gap-5 my-5">
@@ -35,10 +41,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
 
         <div className="mb-4">
           <span className="uppercase text-lg font-titles tracking-wider text-center">
-            {user?.displayName || "No name available"}
+            {user.displayName || "Loading..."}
           </span>
         </div>
-        <Button className="text-sm md:mt-0 px-4" onClick={() => signOut()}>
+        <Button
+          className="text-sm md:mt-0 px-4 !w-auto"
+          onClick={() => signOut()}
+        >
           Вийти з аккаунту
         </Button>
       </div>
@@ -71,12 +80,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
         <h3 className="mt-14 mb-4 text-left text-ivory text-xl md:text-2xl">
           програма
         </h3>
-        <h5>назва програми</h5>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati
-          vitae error veritatis in repudiandae doloremque earum neque ipsum
-          aliquam distinctio.
-        </p>
+        <h5>{post?.title || program.title}</h5>
+        <p>{post?.programFields.programShortDescription}</p>
+        {program.expires && (
+          <>
+            <p>Expires on: {program?.expires}</p>
+          </>
+        )}
       </div>
     </div>
   );

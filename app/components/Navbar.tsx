@@ -13,19 +13,19 @@ export default function Navbar({ navStyles, ulStyles }: NavbarProps) {
     >
       <ul className={`flex ${ulStyles}`}>
         <li>
-          <Link href="#">ПРО МЕНЕ</Link>
+          <Link href="#about-me">ПРО МЕНЕ</Link>
         </li>
         <li>
-          <Link href="#">ПРОГРАМИ</Link>
+          <Link href="#programs">ПРОГРАМИ</Link>
         </li>
         <li>
-          <Link href="#">НЕМАРАФОН 2024</Link>
+          <Link href="/program">НЕМАРАФОН 2024</Link>
         </li>
         <li>
-          <Link href="#">ВІДГУКИ</Link>
+          <Link href="#reviews">ВІДГУКИ</Link>
         </li>
         <li>
-          <Link href="#">КОНТАКТИ</Link>
+          <Link href="#footer">КОНТАКТИ</Link>
         </li>
       </ul>
     </nav>

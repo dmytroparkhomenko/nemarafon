@@ -15,8 +15,10 @@ import {
   InstagramLogo,
 } from "@/app/components/symbols/symbols";
 import Link from "next/link";
+import { useAuth } from "../AuthContext"; // !!! code repeats !!!
 
 export default function Header() {
+  const { user, loading } = useAuth();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
@@ -35,9 +37,10 @@ export default function Header() {
       <header className="flex flex-row w-full justify-between items-center">
         <div className={`order-1 ${isMobile ? "md:order-none" : ""}`}>
           {isMobile ? (
-            <>
+            <div className="flex items-center gap-3">
               <ProfileMobile />
-            </>
+              {!loading && user ? <p>{user.displayName}</p> : null}
+            </div>
           ) : (
             <div className="flex flex-row items-center gap-10">
               <InstagramLogo />
@@ -55,7 +58,10 @@ export default function Header() {
                   EN
                 </Link>
               </div>
-              <Profile />
+              <div className="flex items-center gap-3">
+                <Profile />
+                {!loading && user ? <p>{user.displayName}</p> : null}
+              </div>
             </div>
           )}
         </div>
@@ -98,6 +104,7 @@ export default function Header() {
 }
 
 export function HeaderProgramPage() {
+  const { user, loading } = useAuth();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
@@ -112,7 +119,10 @@ export function HeaderProgramPage() {
         </div>
         <div className={`order-2`}>
           {isMobile ? (
-            <ProfileMobile />
+            <div className="flex items-center gap-3">
+              <ProfileMobile />
+              {!loading && user ? <p>{user.displayName}</p> : null}
+            </div>
           ) : (
             <div className="flex flex-row items-center gap-10">
               <InstagramLogo />
@@ -130,7 +140,10 @@ export function HeaderProgramPage() {
                   EN
                 </Link>
               </div>
-              <Profile />
+              <div className="flex items-center gap-3">
+                <Profile />
+                {!loading && user ? <p>{user.displayName}</p> : null}
+              </div>
             </div>
           )}
         </div>

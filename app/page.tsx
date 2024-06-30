@@ -2,15 +2,19 @@
 
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-import Programs from "@/app/program/page";
+import ProgramsOverview from "@/app/program/ProgramsOverview";
 import WhyMeItem from "./components/WhyMeItem";
 import Heading from "./components/Heading";
 
 import { Elipse } from "./components/symbols/symbols";
 import Reviews from "./components/Reviews";
 import Results from "./components/Results";
+import { getPrograms } from "./api/programs-fetching";
+import { ProgramCardProps } from "@/interfaces/interfaces";
 
 export default async function Home() {
+  const posts: ProgramCardProps = await getPrograms();
+
   return (
     <>
       <div className="relative h-screen overflow-y-auto bg-[#140702]">
@@ -20,7 +24,7 @@ export default async function Home() {
           <div className="min-h-screen">
             <Header />
           </div>
-          <section className="mb-24 md:mb-56">
+          <section id="about-me" className="mb-24 md:mb-56">
             <Elipse
               styles={"w-[900px] h-[900px] hidden md:block blur-[65px]"}
             />
@@ -51,7 +55,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-          <section className="relative">
+          <section id="why-me" className="relative mb-40">
             <div className="md:hidden">
               <Elipse
                 styles={
@@ -80,7 +84,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-          <Programs />
+          <ProgramsOverview programs={posts} />
           <Results />
           <Reviews />
         </div>

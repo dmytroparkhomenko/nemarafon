@@ -13,7 +13,7 @@ export default function Results() {
   const scrollResultsContainerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="my-40">
+    <section id="results" className="my-40">
       <Heading>Немарафон 2024</Heading>
       <p className="font-light uppercase text-center">
         Ви можете побачити та надихнутись успіхами моїх підлеглих

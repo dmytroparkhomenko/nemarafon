@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import { StrictMode } from "react";
 import "./globals.scss";
 
-// import SessionProviderWrapper from "./SessionProvider";
-import { AuthProvider } from "./AuthContext"; // Update the path as needed
+import { AuthProvider } from "./AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,18 +17,13 @@ type RootLayoutProps = {
   pageProps: any;
 };
 
-export default function RootLayout({
-  children,
-  pageProps = {},
-}: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <StrictMode>
       <html lang="uk-UA">
         <body className={`overflow-x-hidden ${inter.className}`}>
           <AuthProvider>
-            {/* <SessionProviderWrapper session={pageProps.session}> */}
             <main className="wrapper">{children}</main>
-            {/* </SessionProviderWrapper> */}
           </AuthProvider>
         </body>
       </html>

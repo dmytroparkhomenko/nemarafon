@@ -6,6 +6,7 @@ export interface ProgramCardProps {
   content?: any;
   programFields: {
     programPrice: number | null;
+    programShortDescription: string | null;
     programDescription: Array<{
       __typename: string;
       programDescriptionItem: string;

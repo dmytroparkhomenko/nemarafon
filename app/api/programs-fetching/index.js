@@ -8,6 +8,7 @@ export async function getPrograms() {
           content
           programFields {
             programPrice
+            programShortDescription
             programDescription {
               __typename
               programDescriptionItem

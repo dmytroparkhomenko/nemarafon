@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import GoogleIcon from "@/app/components/symbols/GoogleIcon.svg";
-import Button from "../components/Button";
 import EyeIcon from "../components/symbols/Eye.svg";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -13,18 +12,15 @@ import { signInWithGoogle } from "../firebase/auth";
 const auth = getAuth(firebaseApp);
 
 interface LoginFormProps {
-  switchToRegister: () => void;
+  switchToRegister?: () => void | null;
+  title?: string | null;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, title }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
 
   const handleManualSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -43,19 +39,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister }) => {
     }
   };
 
-  // duplicate
-  const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (error) {
-      setError("Failed to sign in with Google.");
-    }
-  };
   return (
     <>
       <div className="w-full md:w-1/2 md:mx-auto">
         <h3 className="mb-4 text-left text-ivory text-xl md:text-2xl">
-          Увійдіть до аккаунту
+          {title || "Увійдіть до аккаунту"}
         </h3>
         <form className="pt-6 pb-8 mb-4 w-full" onSubmit={handleManualSignIn}>
           <div className="mb-4">
@@ -87,7 +75,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister }) => {
             />
             <div
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer mt-[1.9rem] mr-1"
-              onClick={handleTogglePassword}
+              onClick={() => setShowPassword(!showPassword)}
             >
               <Image src={EyeIcon} alt="Show password" width={20} height={20} />
             </div>
@@ -103,9 +91,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister }) => {
           </div>
           <div className="flex flex-col items-center justify-between mt-6">
             <span className="mb-2">Авторизуватись за допомогою</span>
-            <Button
-              onClick={handleGoogleSignIn}
-              className="flex gap-2 justify-center w-2/3"
+            <button
+              onClick={signInWithGoogle}
+              className="py-[6px] md:py-[8px] bg-marine rounded-full text-center font-light text-[20px] uppercase flex gap-2 justify-center w-2/3"
             >
               <Image
                 src={GoogleIcon}
@@ -113,7 +101,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister }) => {
                 className="inline-block"
               />
               Google
-            </Button>
+            </button>
           </div>
           <div className="text-center">
             <button
