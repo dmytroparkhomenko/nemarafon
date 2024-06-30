@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 
 type RootLayoutProps = {
   children: React.ReactNode;
-  pageProps: any;
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {

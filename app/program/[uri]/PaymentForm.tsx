@@ -5,38 +5,28 @@ import Mastercard from "@/app/components/symbols/Mastercard.svg";
 import Privat from "@/app/components/symbols/Privat.svg";
 
 function PaymentForm() {
-  const [amount, setAmount] = useState("1");
+  const [amount, setAmount] = useState("30000");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
+    // Prepare data to send to your API endpoint
+    const requestData = {
+      amount, // Ensure this is in the smallest unit, which should be копійки for гривні
+    };
+
+    // Sending the amount to your backend which is responsible for communicating with Monobank API
     const response = await fetch("/api/init-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount }),
+      body: JSON.stringify(requestData),
     });
-    const { data, signature } = await response.json();
 
-    // Dynamically create a form to submit the payment
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "https://www.liqpay.ua/api/3/checkout";
-    form.acceptCharset = "utf-8";
+    // Assuming your backend responds with the URL to redirect for payment processing
+    const { paymentUrl } = await response.json();
 
-    const inputData = document.createElement("input");
-    inputData.type = "hidden";
-    inputData.name = "data";
-    inputData.value = data;
-
-    const inputSignature = document.createElement("input");
-    inputSignature.type = "hidden";
-    inputSignature.name = "signature";
-    inputSignature.value = signature;
-
-    form.appendChild(inputData);
-    form.appendChild(inputSignature);
-
-    document.body.appendChild(form);
-    form.submit(); // Automatically submits the form, redirecting to LiqPay checkout
+    // Redirecting to the payment URL received from the backend
+    window.location.href = paymentUrl;
   };
 
   return (
