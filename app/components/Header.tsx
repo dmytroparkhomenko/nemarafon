@@ -37,10 +37,7 @@ export default function Header() {
       <header className="flex flex-row w-full justify-between items-center">
         <div className={`order-1 ${isMobile ? "md:order-none" : ""}`}>
           {isMobile ? (
-            <div className="flex items-center gap-3">
-              <ProfileMobile />
-              {!loading && user ? <p>{user.displayName}</p> : null}
-            </div>
+            <ProfileMobile />
           ) : (
             <div className="flex flex-row items-center gap-10">
               <InstagramLogo />
@@ -105,47 +102,44 @@ export default function Header() {
 
 export function HeaderProgramPage() {
   const { user, loading } = useAuth();
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <>
       <header className="flex flex-row w-full justify-between items-center">
-        <div className={`order-1`}>
-          {isMobile ? (
+        <div className="logo">
+          <div className="block md:hidden">
             <LogoMobile isCentered={false} />
-          ) : (
+          </div>
+          <div className="hidden md:block">
             <Logo isCentered={false} />
-          )}
+          </div>
         </div>
-        <div className={`order-2`}>
-          {isMobile ? (
-            <div className="flex items-center gap-3">
-              <ProfileMobile />
-              {!loading && user ? <p>{user.displayName}</p> : null}
+        <div className="header-navbar">
+          <Link href="/profile" className="flex items-center gap-3 md:hidden">
+            <ProfileMobile />
+            {!loading && user ? <p>{user.displayName}</p> : null}
+          </Link>
+          <div className="hidden md:flex flex-row items-center gap-10">
+            <InstagramLogo />
+            <div className="langs flex gap-5">
+              <Link
+                href="#"
+                className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
+              >
+                UA
+              </Link>
+              <Link
+                href="#"
+                className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
+              >
+                EN
+              </Link>
             </div>
-          ) : (
-            <div className="flex flex-row items-center gap-10">
-              <InstagramLogo />
-              <div className="langs flex gap-5">
-                <Link
-                  href="#"
-                  className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
-                >
-                  UA
-                </Link>
-                <Link
-                  href="#"
-                  className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
-                >
-                  EN
-                </Link>
-              </div>
-              <div className="flex items-center gap-3">
-                <Profile />
-                {!loading && user ? <p>{user.displayName}</p> : null}
-              </div>
-            </div>
-          )}
+            <Link href="/profile" className="flex items-center gap-3">
+              <Profile />
+              {!loading && user ? <span>{user.displayName}</span> : null}
+            </Link>
+          </div>
         </div>
       </header>
     </>

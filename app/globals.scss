@@ -41,3 +41,14 @@ p {
     width: 100%;
   }
 }
+
+// Program page
+.program-page-layout {
+  padding: 1rem 1.5rem;
+  min-height: 100vh;
+  background: url("/sources/second-bg.jpg") left;
+}
+
+.with-background {
+  background: url("/sources/payment-bg.jpg") cover left;
+}

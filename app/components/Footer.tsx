@@ -17,7 +17,12 @@ export default function Footer() {
       <div className="md:hidden">
         <LogoMobile isCentered={true} />
       </div>
-      <Navbar navStyles="my-20" ulStyles={"justify-center gap-20"} />
+      <Navbar
+        navStyles="my-8 md:my-20"
+        ulStyles={
+          "justify-center gap-8 md:gap-20 flex-col md:flex-row items-center md:items-start"
+        }
+      />
       <div className="flex flex-col text-center md:mb-10">
         <div className="flex justify-center gap-6 text-marine uppercase text-lg font-light">
           <a className="" href="#">

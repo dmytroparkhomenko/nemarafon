@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import DefaultUserProfileImage from "@/public/sources/temp/review.png";
 import Button from "@/app/components/Button";
 import { useAuth } from "../AuthContext";
-import { User } from "firebase/auth";
-import { ProgramCardProps } from "@/interfaces/interfaces";
-import { getPrograms } from "@/app/api/programs-fetching/index";
+
+import Loading from "../loading";
+import Link from "next/link";
 
 interface UserProfileProps {
-  user: User;
-  program: any;
+  programContent: any;
 }
 
-const UserProfile: React.FC<UserProfileProps> = async ({ user, program }) => {
-  const { signOut } = useAuth();
+const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
+  const { user, loading, purchasedProgram, signOut } = useAuth();
 
-  const posts: ProgramCardProps[] = await getPrograms();
-  const post: ProgramCardProps | undefined = posts.find(
-    (post) => post.uri === `/${program.uri}/`
-  );
+  if (loading) return <Loading />;
 
   return (
     <div className="user profile flex flex-col md:flex-row w-full gap-10 md:gap-5 my-5">
       <div className="w-full md:w-1/4 text-center">
-        {user.photoURL ? (
+        {user?.photoURL ? (
           <Image
             src={user?.photoURL}
             width={100}
@@ -41,7 +37,7 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, program }) => {
 
         <div className="mb-4">
           <span className="uppercase text-lg font-titles tracking-wider text-center">
-            {user.displayName || "Loading..."}
+            {user?.displayName}
           </span>
         </div>
         <Button
@@ -80,13 +76,17 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, program }) => {
         <h3 className="mt-14 mb-4 text-left text-ivory text-xl md:text-2xl">
           програма
         </h3>
-        <h5>{post?.title || program.title}</h5>
-        <p>{post?.programFields.programShortDescription}</p>
-        {program.expires && (
+        <Link
+          href={programContent?.uri ? `program/${programContent.uri}` : "#"}
+        >
+          <h5>{programContent?.title}</h5>
+        </Link>
+        {programContent?.uri ? (
           <>
-            <p>Expires on: {program?.expires}</p>
+            <p>{programContent?.programFields.programShortDescription}</p>
+            <p className="mt-1">Expires on: {purchasedProgram?.expires}</p>
           </>
-        )}
+        ) : null}
       </div>
     </div>
   );

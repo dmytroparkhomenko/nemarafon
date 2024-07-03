@@ -3,30 +3,47 @@ import React, { useState } from "react";
 import Visa from "@/app/components/symbols/Visa.svg";
 import Mastercard from "@/app/components/symbols/Mastercard.svg";
 import Privat from "@/app/components/symbols/Privat.svg";
+import { ProgramCardProps } from "@/interfaces/interfaces";
+import { getPostDataForPayment } from "@/app/api/programs-fetching";
 
-function PaymentForm() {
-  const [amount, setAmount] = useState("30000");
+interface PaymentFormProps {
+  programURI: string;
+}
+
+async function PaymentForm({ programURI }: PaymentFormProps) {
+  const amount = "1";
+
+  const programPaymentInfo = await getPostDataForPayment(programURI);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
-    // Prepare data to send to your API endpoint
-    const requestData = {
-      amount, // Ensure this is in the smallest unit, which should be копійки for гривні
-    };
-
-    // Sending the amount to your backend which is responsible for communicating with Monobank API
     const response = await fetch("/api/init-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestData),
+      body: JSON.stringify({ amount }),
     });
+    const { data, signature } = await response.json();
 
-    // Assuming your backend responds with the URL to redirect for payment processing
-    const { paymentUrl } = await response.json();
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://www.liqpay.ua/api/3/checkout";
+    form.acceptCharset = "utf-8";
 
-    // Redirecting to the payment URL received from the backend
-    window.location.href = paymentUrl;
+    const inputData = document.createElement("input");
+    inputData.type = "hidden";
+    inputData.name = "data";
+    inputData.value = data;
+
+    const inputSignature = document.createElement("input");
+    inputSignature.type = "hidden";
+    inputSignature.name = "signature";
+    inputSignature.value = signature;
+
+    form.appendChild(inputData);
+    form.appendChild(inputSignature);
+
+    document.body.appendChild(form);
+    form.submit();
   };
 
   return (
@@ -35,39 +52,35 @@ function PaymentForm() {
       className="bg-gray-800 text-white p-5 rounded-lg max-w-lg mx-auto"
     >
       <div className="text-center mb-6">
-        <h2 className="text-xl font-bold">ДЕТАЛІ ПРОГРАМИ</h2>
+        <h2 className="text-xl">ДЕТАЛІ ПРОГРАМИ</h2>
       </div>
 
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1">
-          ПЛАН ХАРЧУВАННЯ (3/4 ТИЖНІ)
+          {programPaymentInfo?.title}
         </label>
         <p className="text-sm">
-          Індивідуальна програма харчування, в якій враховані всі особливості
-          вашого організму, спосіб життя та особисті побажання
+          {programPaymentInfo?.programFields.programShortDescription}
         </p>
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-1">ПІДПИСКА</label>
-        <p className="text-sm">План харчування (3/4 тижні)</p>
-      </div>
-
-      <div className="mb-4">
         <label className="block text-sm font-medium mb-1">
-          ПОНОВЛЕННЯ ЧЛЕНСТА
+          Доступ до програми
         </label>
-        <p className="text-sm">19.06.2024р</p>
+        <p className="text-sm">6 тижнів</p>
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-1">ЗАГАЛЬНА СУММА</label>
-        <p className="text-sm">3000 грн</p>
+        <label className="block text-sm font-medium mb-1">Загальна сума</label>
+        <p className="text-sm">
+          {programPaymentInfo?.programFields.programPrice} грн.{" "}
+        </p>
       </div>
 
       <div className="mb-6">
         <label className="block text-sm font-medium mb-2">
-          Оплатити за допомогою
+          Оплата за допомогою
         </label>
         <div className="flex gap-3">
           <Image
@@ -90,9 +103,9 @@ function PaymentForm() {
 
       <button
         type="submit"
-        className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+        className="w-full uppercase bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
       >
-        ОПЛАТИТИ
+        Оплатити
       </button>
     </form>
   );

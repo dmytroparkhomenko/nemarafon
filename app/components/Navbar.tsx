@@ -16,10 +16,10 @@ export default function Navbar({ navStyles, ulStyles }: NavbarProps) {
           <Link href="#about-me">ПРО МЕНЕ</Link>
         </li>
         <li>
-          <Link href="#programs">ПРОГРАМИ</Link>
+          <Link href="/program">ПРОГРАМИ</Link>
         </li>
         <li>
-          <Link href="/program">НЕМАРАФОН 2024</Link>
+          <Link href="/program/">НЕМАРАФОН 2024</Link>
         </li>
         <li>
           <Link href="#reviews">ВІДГУКИ</Link>
