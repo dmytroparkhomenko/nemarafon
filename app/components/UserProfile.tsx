@@ -17,7 +17,7 @@ const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="user profile flex flex-col md:flex-row w-full gap-10 md:gap-5 my-5">
+    <div className="user profile flex flex-col md:flex-row w-full gap-10 md:gap-5">
       <div className="w-full md:w-1/4 text-center">
         {user?.photoURL ? (
           <Image
@@ -41,7 +41,7 @@ const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
           </span>
         </div>
         <Button
-          className="text-sm md:mt-0 px-4 !w-auto"
+          className="md:mt-0 px-4 !text-sm !w-auto"
           onClick={() => signOut()}
         >
           Вийти з аккаунту

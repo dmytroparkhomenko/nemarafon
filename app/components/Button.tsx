@@ -22,7 +22,7 @@ export default function Button({
       passHref
       type={type || "button"}
       onClick={onClick}
-      className={`w-full py-[6px] md:py-[8px] bg-marine rounded-full text-center font-light text-[20px] uppercase ${className}`}
+      className={`w-full py-[6px] md:py-[8px] bg-marine rounded-full text-center font-light text-[16px] md:text-[20px] uppercase ${className}`}
     >
       {children}
     </Link>

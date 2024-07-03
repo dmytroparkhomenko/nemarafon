@@ -21,7 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <StrictMode>
       <html lang="uk-UA">
         <body
-          className={`overflow-x-hidden overscroll-none ${inter.className}`}
+          className={`overflow-x-hidden md:overscroll-none ${inter.className}`}
         >
           <AuthProvider>
             <main className="wrapper">{children}</main>

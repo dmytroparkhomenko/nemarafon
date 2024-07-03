@@ -9,11 +9,31 @@ import VideoEmbed from "@/app/components/VideoEmbed";
 import Loading from "./loading";
 
 import { ProgramNavigatorProps } from "@/interfaces/interfaces";
+import {
+  incrementWatchedVideos,
+  saveLastWatchedVideo,
+  getLastWatchedVideo,
+} from "./videoCouterStorage";
 
 const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
-  const [currentVideoId, setCurrentVideoId] = useState(0);
-
+  const [currentVideoId, setCurrentVideoId] = useState(getLastWatchedVideo());
   const content = program?.programFields?.programContent;
+
+  const handleNextVideo = () => {
+    const nextVideoId = currentVideoId + 1;
+    if (nextVideoId < content.length) {
+      setCurrentVideoId(nextVideoId);
+      incrementWatchedVideos();
+      saveLastWatchedVideo(nextVideoId);
+    }
+  };
+
+  const handlePreviousVideo = () => {
+    if (currentVideoId > 0) {
+      setCurrentVideoId(currentVideoId - 1);
+      saveLastWatchedVideo(currentVideoId - 1);
+    }
+  };
 
   const videoLink =
     content && content.length > 0
@@ -39,9 +59,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
       <div className="flex justify-between mt-2">
         <a
           className="flex items-center gap-1 text-sm cursor-pointer"
-          onClick={() =>
-            currentVideoId <= 0 ? null : setCurrentVideoId(currentVideoId - 1)
-          }
+          onClick={handlePreviousVideo}
         >
           <Image
             src={Arrow}
@@ -56,11 +74,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
         </span>
         <a
           className="flex items-center gap-1 text-sm cursor-pointer"
-          onClick={() =>
-            currentVideoId === content!.length - 1
-              ? null
-              : setCurrentVideoId(currentVideoId + 1)
-          }
+          onClick={handleNextVideo}
         >
           <span className="hidden md:block">Наступне відео</span>
           <Image
