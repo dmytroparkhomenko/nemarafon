@@ -15,7 +15,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({
 }) => {
   return (
     <nav className="w-full md:w-1/3 my-[30px] justify-center flex flex-col md:p-0 font-titles font-light md:mt-[-50px]">
-      <ul className="flex flex-row md:flex-col gap-8 text-sm md:text-lg justify-center items-center md:items-start">
+      <ul className="flex flex-row md:flex-col gap-8 text-sm md:text-lg justify-center items-center md:items-start uppercase">
         <li className={`${isProgramPage ? programPageStyles : null}`}>
           <Link href={myProgram}>Моя програма</Link>
           {isProgramPage ? (

@@ -20,7 +20,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <StrictMode>
       <html lang="uk-UA">
-        <body className={`overflow-x-hidden ${inter.className}`}>
+        <body
+          className={`overflow-x-hidden overscroll-none ${inter.className}`}
+        >
           <AuthProvider>
             <main className="wrapper">{children}</main>
           </AuthProvider>
