@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 
 import LoginForm from "@/app/components/LoginForm";
 import RegisterForm from "@/app/components/RegisterForm";

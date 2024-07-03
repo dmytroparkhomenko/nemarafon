@@ -15,7 +15,26 @@ import {
   InstagramLogo,
 } from "@/app/components/symbols/symbols";
 import Link from "next/link";
-import { useAuth } from "../AuthContext"; // !!! code repeats !!!
+import { useAuth } from "../AuthContext";
+
+const Langs = () => {
+  return (
+    <div className="langs flex gap-5">
+      <Link
+        href="#"
+        className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
+      >
+        UA
+      </Link>
+      <Link
+        href="#"
+        className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
+      >
+        EN
+      </Link>
+    </div>
+  );
+};
 
 export default function Header() {
   const { user, loading } = useAuth();
@@ -41,24 +60,11 @@ export default function Header() {
           ) : (
             <div className="flex flex-row items-center gap-10">
               <InstagramLogo />
-              <div className="langs flex gap-5">
-                <Link
-                  href="#"
-                  className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
-                >
-                  UA
-                </Link>
-                <Link
-                  href="#"
-                  className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
-                >
-                  EN
-                </Link>
-              </div>
-              <div className="flex items-center gap-3">
+              <Langs />
+              <Link href="/profile" className="flex items-center gap-3">
                 <Profile />
                 {!loading && user ? <p>{user.displayName}</p> : null}
-              </div>
+              </Link>
             </div>
           )}
         </div>
@@ -121,20 +127,7 @@ export function HeaderProgramPage() {
           </Link>
           <div className="hidden md:flex flex-row items-center gap-10">
             <InstagramLogo />
-            <div className="langs flex gap-5">
-              <Link
-                href="#"
-                className="lang py-1 px-6 rounded-full border-[1px] border-transparent bg-marine font-light"
-              >
-                UA
-              </Link>
-              <Link
-                href="#"
-                className="lang py-1 px-6 rounded-full border-[1px] border-ivory font-light"
-              >
-                EN
-              </Link>
-            </div>
+            <Langs />
             <Link href="/profile" className="flex items-center gap-3">
               <Profile />
               {!loading && user ? <span>{user.displayName}</span> : null}

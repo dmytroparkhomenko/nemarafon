@@ -10,10 +10,18 @@ import { ProgramPageProps } from "@/interfaces/interfaces";
 import AuthLayer from "@/app/components/AuthLayer";
 import AppLayout from "@/app/components/AppLayout";
 
+const hasProgramExpired = (expiryDate: string) => {
+  const currentDate = new Date();
+  const expirationDate = new Date(expiryDate);
+
+  return expirationDate < currentDate;
+};
+
 const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
   const { user, loading, purchasedProgram } = useAuth();
-
   const [isLogin, setIsLogin] = useState(true);
+  const expired =
+    purchasedProgram && hasProgramExpired(purchasedProgram.expires);
 
   if (loading) {
     return <Loading />;
@@ -36,7 +44,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
 
   return (
     <AppLayout>
-      {purchasedProgram?.uri === params.uri && purchasedProgram ? (
+      {purchasedProgram?.uri === params.uri && purchasedProgram && !expired ? (
         <div className="flex flex-col md:flex-row justify-between md:py-8">
           <TopNavbar myProgram={params.uri} />
           <Suspense fallback={<Loading />}>
@@ -45,12 +53,21 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
         </div>
       ) : (
         <div className="flex flex-col md:flex-row md:items-center justify-between py-10 h-full">
-          <div className="md:mb-0 mb-10">
-            <h2 className="text-2xl md:text-4xl text-left md:mb-2">
-              Умови та оплата
-            </h2>
-            <p>Ви можете змінити наявну програму в будь-який момент</p>
-          </div>
+          {expired ? (
+            <div className="md:mb-0 mb-10">
+              <h2 className="text-2xl md:text-4xl text-left md:mb-2">
+                Підписка на програму закінчилась
+              </h2>
+              <p>Здійсніть оплату, щоб відновити доступ до програми</p>
+            </div>
+          ) : (
+            <div className="md:mb-0 mb-10">
+              <h2 className="text-2xl md:text-4xl text-left md:mb-2">
+                Умови та оплата
+              </h2>
+              <p>Ви зможете змінити програму в будь-який момент.</p>
+            </div>
+          )}
           <PaymentForm programURI={params.uri} />
         </div>
       )}
