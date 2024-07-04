@@ -9,6 +9,7 @@ import PaymentForm from "./PaymentForm";
 import { ProgramPageProps } from "@/interfaces/interfaces";
 import AuthLayer from "@/app/components/AuthLayer";
 import AppLayout from "@/app/components/AppLayout";
+import { HeaderProgramPage } from "@/app/components/Header";
 
 const hasProgramExpired = (expiryDate: string) => {
   const currentDate = new Date();
@@ -43,7 +44,8 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
   }
 
   return (
-    <AppLayout>
+    <main className="px-5 md:px-24 py-12 md:py-16 min-h-[100vh] h-auto md:h-[100vh] md:w-[100vw] z-0 bg-[url('/sources/second-bg.jpg')] bg-center">
+      <HeaderProgramPage />
       {purchasedProgram?.uri === params.uri && purchasedProgram && !expired ? (
         <div className="flex flex-col md:flex-row justify-between md:py-8">
           <TopNavbar myProgram={params.uri} />
@@ -71,7 +73,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
           <PaymentForm programURI={params.uri} />
         </div>
       )}
-    </AppLayout>
+    </main>
   );
 };
 

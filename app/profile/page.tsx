@@ -44,7 +44,8 @@ export default function Profile() {
   if (loading || !programContent) return <Loading />;
 
   return (
-    <AppLayout>
+    <main className="px-5 md:px-24 py-12 md:py-16 min-h-[100vh] h-auto md:h-[100vh] md:w-[100vw] z-0 bg-[url('/sources/second-bg.jpg')] bg-center">
+      <HeaderProgramPage />
       <div className="flex flex-col items-stretch md:flex-row justify-between md:my-8 h-[-webkit-fill-available]">
         <TopNavbar
           myProgram={`/program/${
@@ -58,6 +59,6 @@ export default function Profile() {
           <AuthLayer isLogin={isLogin} setIsLogin={setIsLogin} />
         )}
       </div>
-    </AppLayout>
+    </main>
   );
 }
