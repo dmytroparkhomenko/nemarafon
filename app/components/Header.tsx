@@ -97,8 +97,8 @@ export default function Header() {
           </Button>
         </div>
       </div>
-      <div className="w-11/12 md:w-fit md:float-right mt-28 md:mt-48 border-b border-b-marine mx-auto">
-        <p className=" text-ivory mx-auto font-light text-center text-xs leading-tight pb-2">
+      <div className="w-3/4 md:w-fit md:float-right mt-28 md:mt-48 border-b border-b-marine mx-auto">
+        <p className="text-ivory mx-auto font-light text-center text-xs leading-tight pb-2">
           Комплексні програми з унікальними умовами участі та зворотним зв’язком
         </p>
       </div>

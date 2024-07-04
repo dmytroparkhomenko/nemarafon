@@ -25,7 +25,7 @@ export default function Navbar({ navStyles, ulStyles }: NavbarProps) {
           <Link href="#reviews">ВІДГУКИ</Link>
         </li>
         <li>
-          <Link href="#footer">КОНТАКТИ</Link>
+          <Link href="/profile">ПРОФІЛЬ</Link>
         </li>
       </ul>
     </nav>

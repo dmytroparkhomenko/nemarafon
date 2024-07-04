@@ -1,5 +1,40 @@
-@import url("https://fonts.cdnfonts.com/css/next-art");
+// @import url("https://fonts.cdnfonts.com/css/next-art");
 @import url("https://fonts.cdnfonts.com/css/montserrat");
+
+// @font-face {
+//   font-family: "NEXT ART";
+//   font-style: normal;
+//   font-weight: 300;
+//   src: url("/fonts/NEXT_ART_Light.otf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "NEXT ART";
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url("/fonts/NEXT_ART_Regular.otf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "NEXT ART";
+//   font-style: normal;
+//   font-weight: 600;
+//   src: url("/fonts/NEXT_ART_SemiBold.otf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "NEXT ART";
+//   font-style: normal;
+//   font-weight: 700;
+//   src: url("/fonts/NEXT_ART_Bold.otf") format("opentype");
+// }
+
+// @font-face {
+//   font-family: "NEXT ART";
+//   font-style: normal;
+//   font-weight: 800;
+//   src: url("/fonts/NEXT_ART_Heavy.otf") format("opentype");
+// }
 
 @tailwind base;
 @tailwind components;
@@ -8,6 +43,10 @@
 body {
   background-color: #000;
   color: #fff;
+}
+
+h1 {
+  @apply w-8/12 md:w-full text-2xl md:text-4xl text-left md:text-center leading-tight md:leading-[3rem] font-titles font-bold uppercase;
 }
 
 h2 {

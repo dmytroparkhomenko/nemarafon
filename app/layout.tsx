@@ -20,6 +20,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <StrictMode>
       <html lang="uk-UA">
+        <head>
+          <style>
+            <link
+              href="https://fonts.cdnfonts.com/css/next-art"
+              rel="stylesheet"
+            />
+          </style>
+        </head>
         <body
           className={`overflow-x-hidden md:overscroll-none ${inter.className}`}
         >
