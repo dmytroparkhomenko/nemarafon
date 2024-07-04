@@ -57,12 +57,12 @@ const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
               <h5>Email</h5>
               <p>{user?.email}</p>
             </div>
-            <div>
+            <div className="hidden md:block">
               <h5>Телеграм</h5>
               <p>---</p>
             </div>
           </div>
-          <div className="flex flex-col w-1/2 gap-6">
+          <div className="flex-col w-1/2 gap-6 hidden md:flex">
             <div>
               <h5>Телефон</h5>
               <p>---</p>
