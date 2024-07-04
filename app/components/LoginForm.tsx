@@ -34,7 +34,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, title }) => {
       );
       return userCredential.user;
     } catch (error) {
-      setError("Failed to sign in. Please check your credentials.");
+      setError("Помилка авторизації. Логін або пароль невірні.");
       console.error("Error signing in with email and password", error);
     }
   };

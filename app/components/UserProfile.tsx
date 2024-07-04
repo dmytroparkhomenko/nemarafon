@@ -84,7 +84,7 @@ const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
         {programContent?.uri ? (
           <>
             <p>{programContent?.programFields.programShortDescription}</p>
-            <p className="mt-1">Expires on: {purchasedProgram?.expires}</p>
+            <p className="mt-1">Закінчується: {purchasedProgram?.expires}</p>
           </>
         ) : null}
       </div>

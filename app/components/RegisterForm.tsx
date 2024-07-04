@@ -34,7 +34,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
     event.preventDefault();
 
     if (password !== confirmationPassword) {
-      setError("The passwords are not equal. Check it again.");
+      setError("Паролі не співпадають.");
       return;
     }
 
@@ -46,7 +46,9 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
         // router.push("/g");
       })
       .catch((error) => {
-        setError("Failed to sign up. Please check your credentials.");
+        setError(
+          "Помилка реєстрації акаунту. Будь ласка, перевірте введені дані."
+        );
         console.error("Error registering with email and password", error);
       });
   };
