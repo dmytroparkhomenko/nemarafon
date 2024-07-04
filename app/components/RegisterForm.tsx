@@ -57,7 +57,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
         <h3 className="mb-4 text-left text-ivory text-xl md:text-2xl">
           Зареєструватися
         </h3>
-        <form className="pt-6 pb-8 mb-4 w-full" onSubmit={handleManualSignUp}>
+        <form className="pt-4 pb-8 mb-4 w-full" onSubmit={handleManualSignUp}>
           <div className="mb-4">
             <label className="block mb-2" htmlFor="name">
               Імʼя

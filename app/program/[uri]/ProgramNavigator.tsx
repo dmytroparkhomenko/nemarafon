@@ -69,8 +69,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
           <span className="hidden md:block">Попереднє відео</span>
         </a>
         <span className="uppercase text-gold text-sm md:text-[18px]">
-          <b>#{currentVideoId + 1}: </b>
-          Назва лекції
+          <b>Лекція #{currentVideoId + 1}</b>
         </span>
         <a
           className="flex items-center gap-1 text-sm cursor-pointer"

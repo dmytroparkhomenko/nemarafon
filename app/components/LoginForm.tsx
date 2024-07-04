@@ -45,7 +45,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, title }) => {
         <h3 className="mb-4 text-left text-ivory text-xl md:text-2xl">
           {title || "Увійдіть до аккаунту"}
         </h3>
-        <form className="pt-6 pb-8 mb-4 w-full" onSubmit={handleManualSignIn}>
+        <form className="pt-4 pb-8 mb-4 w-full" onSubmit={handleManualSignIn}>
           <div className="mb-4">
             <label className="block mb-2" htmlFor="email">
               Ел. пошта

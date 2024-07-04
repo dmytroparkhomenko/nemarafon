@@ -63,7 +63,9 @@ export default function Header() {
               <Langs />
               <Link href="/profile" className="flex items-center gap-3">
                 <Profile />
-                {!loading && user ? <p>{user.displayName}</p> : null}
+                {!loading && user ? (
+                  <span className="uppercase">{user.displayName}</span>
+                ) : null}
               </Link>
             </div>
           )}
@@ -123,14 +125,18 @@ export function HeaderProgramPage() {
         <div className="header-navbar">
           <Link href="/profile" className="flex items-center gap-3 md:hidden">
             <ProfileMobile />
-            {!loading && user ? <p>{user.displayName}</p> : null}
+            {!loading && user ? (
+              <span className="uppercase">{user.displayName}</span>
+            ) : null}
           </Link>
           <div className="hidden md:flex flex-row items-center gap-10">
             <InstagramLogo />
             <Langs />
             <Link href="/profile" className="flex items-center gap-3">
               <Profile />
-              {!loading && user ? <span>{user.displayName}</span> : null}
+              {!loading && user ? (
+                <span className="uppercase">{user.displayName}</span>
+              ) : null}
             </Link>
           </div>
         </div>
