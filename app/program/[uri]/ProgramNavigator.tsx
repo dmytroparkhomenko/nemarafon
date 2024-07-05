@@ -15,9 +15,21 @@ import {
   getLastWatchedVideo,
 } from "./videoCouterStorage";
 
-const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
-  const [currentVideoId, setCurrentVideoId] = useState(getLastWatchedVideo());
-  const content = program?.programFields?.programContent;
+const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
+  currentURI,
+  program,
+}) => {
+  const selectedProgram = Array.isArray(program)
+    ? program.find((p) => {
+        return p.uri === `/${currentURI}/`;
+      })
+    : program;
+  const content = selectedProgram?.programFields?.programContent;
+
+  const [currentVideoId, setCurrentVideoId] = useState(0); //getLastWatchedVideo()
+  const lastWatchedVideo = parseInt(
+    localStorage.getItem("lastWatchedVideo") || "0"
+  );
 
   const handleNextVideo = () => {
     const nextVideoId = currentVideoId + 1;
@@ -35,6 +47,10 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
     }
   };
 
+  const handleContinueWatching = () => {
+    setCurrentVideoId(lastWatchedVideo);
+  };
+
   const videoLink =
     content && content.length > 0
       ? content[currentVideoId].programVideoLink
@@ -47,7 +63,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
   return (
     <div className="w-full md:w-2/3">
       <h3 className="text-white text-lg md:text-2xl font-light mb-6">
-        {program?.title}
+        {selectedProgram?.title}
       </h3>
       <Suspense fallback={<Loading />}>
         {videoLink ? (
@@ -68,9 +84,15 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({ program }) => {
           />
           <span className="hidden md:block">Попереднє відео</span>
         </a>
-        <span className="uppercase text-gold text-sm md:text-[18px]">
-          <b>Лекція #{currentVideoId + 1}</b>
-        </span>
+        <div className="uppercase font-bold text-gold text-sm md:text-[18px]">
+          {currentVideoId !== lastWatchedVideo ? (
+            <button onClick={handleContinueWatching}>
+              Продовжити: Лекція #{lastWatchedVideo + 1}
+            </button>
+          ) : (
+            <span>Лекція #{currentVideoId + 1}</span>
+          )}
+        </div>
         <a
           className="flex items-center gap-1 text-sm cursor-pointer"
           onClick={handleNextVideo}

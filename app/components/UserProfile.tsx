@@ -11,7 +11,7 @@ interface UserProfileProps {
   programContent: any;
 }
 
-const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
+const UserProfile: React.FC<UserProfileProps> = ({ programContent }) => {
   const { user, loading, purchasedProgram, signOut } = useAuth();
 
   if (loading) return <Loading />;
@@ -77,14 +77,26 @@ const UserProfile: React.FC<UserProfileProps> = async ({ programContent }) => {
           програма
         </h3>
         <Link
-          href={programContent?.uri ? `program/${programContent.uri}` : "#"}
+          href={
+            purchasedProgram?.isAdmin
+              ? "program/"
+              : programContent?.uri
+              ? `program/${programContent.uri}`
+              : "#"
+          }
         >
-          <h5>{programContent?.title}</h5>
+          <h5>
+            {purchasedProgram?.isAdmin
+              ? "Всі програми доступні"
+              : programContent?.title}
+          </h5>
         </Link>
-        {programContent?.uri ? (
+        {purchasedProgram?.isAdmin === false && programContent?.uri ? (
           <>
             <p>{programContent?.programFields.programShortDescription}</p>
-            <p className="mt-1">Закінчується: {purchasedProgram?.expires}</p>
+            <p className="mt-1">
+              Підписка на програму до: {purchasedProgram?.expirationDate}
+            </p>
           </>
         ) : null}
       </div>

@@ -39,7 +39,7 @@ export async function getPrograms() {
 
   const { data } = await res.json();
 
-  return data.posts.nodes;
+  return data.posts.nodes.reverse();
 }
 
 export async function getProgramByURI(uri) {

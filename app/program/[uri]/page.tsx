@@ -21,7 +21,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
   const { user, loading, purchasedProgram } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const expired =
-    purchasedProgram && hasProgramExpired(purchasedProgram.expires);
+    purchasedProgram && hasProgramExpired(purchasedProgram.expirationDate);
 
   if (loading) {
     return <Loading />;
@@ -44,11 +44,17 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
 
   return (
     <AppLayout>
-      {purchasedProgram?.uri === params.uri && purchasedProgram && !expired ? (
-        <div className="flex flex-col md:flex-row justify-between md:py-8">
+      {(purchasedProgram?.uri === params.uri &&
+        purchasedProgram.content &&
+        !expired) ||
+      purchasedProgram?.isAdmin ? (
+        <div className="flex flex-col md:flex-row justify-between md:py-8 h-[-webkit-fill-available]">
           <TopNavbar myProgram={params.uri} />
           <Suspense fallback={<Loading />}>
-            <ProgramNavigator program={purchasedProgram.content!} />
+            <ProgramNavigator
+              currentURI={params.uri}
+              program={purchasedProgram.content!}
+            />
           </Suspense>
         </div>
       ) : (

@@ -70,4 +70,5 @@ export interface Program {
 
 export interface ProgramNavigatorProps {
   program: Program;
+  currentURI: string;
 }

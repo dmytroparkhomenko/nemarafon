@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 
-import { HeaderProgramPage } from "@/app/components/Header";
-
 import AuthLayer from "../components/AuthLayer";
 import UserProfile from "../components/UserProfile";
 import { useAuth } from "../AuthContext";
@@ -30,7 +28,7 @@ export default function Profile() {
       } else {
         setProgramContent({
           uri: "",
-          title: "No program purchased yet",
+          title: "Ви ще не придбали жодної програми",
           description: "",
           purchaseDate: "",
           expires: "",

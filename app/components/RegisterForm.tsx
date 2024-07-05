@@ -21,8 +21,6 @@ import { signInWithGoogle } from "../firebase/auth";
 const auth = getAuth(firebaseApp);
 
 const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
-  // const router = useRouter();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,9 +39,6 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         return updateProfile(userCredential.user, { displayName: name });
-      })
-      .then(() => {
-        // router.push("/g");
       })
       .catch((error) => {
         setError(

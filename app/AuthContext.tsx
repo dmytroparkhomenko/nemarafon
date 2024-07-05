@@ -15,13 +15,14 @@ import { db } from "./firebase/config";
 import { addWeeks, format } from "date-fns";
 
 import { Program } from "@/interfaces/interfaces";
-import { getProgramByURI } from "./api/programs-fetching";
+import { getPrograms, getProgramByURI } from "./api/programs-fetching";
 
 interface ProgramData {
   uri: string;
   purchaseDate: string;
-  expires: string;
-  content?: Program;
+  expirationDate: string;
+  content?: Program | null;
+  isAdmin?: boolean;
 }
 
 interface AuthContextProps {
@@ -57,24 +58,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userPurchaseRef = doc(db, "purchases", user.uid);
+        const userPurchaseRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(userPurchaseRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
           const purchaseDate = data.purchaseDate.toDate();
-          const expirationDate = addWeeks(purchaseDate, 4);
+          const expirationDate = addWeeks(purchaseDate, 6);
+          const isAdmin = data.isAdmin === true;
 
           setPurchasedProgram({
             uri: data.programURI,
-            purchaseDate: format(purchaseDate, "PPP"),
-            expires: format(expirationDate, "PPP"),
+            purchaseDate: format(purchaseDate, "dd.MM.yyyy"),
+            expirationDate: format(expirationDate, "dd.MM.yyyy"),
+            isAdmin: isAdmin,
           });
         } else {
           setPurchasedProgram({
             uri: "",
             purchaseDate: "",
-            expires: "",
+            expirationDate: "",
+            isAdmin: false,
           });
         }
         setUser(user);
@@ -90,7 +94,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     async function fetchProgramContent() {
-      if (purchasedProgram?.uri) {
+      if (purchasedProgram?.isAdmin) {
+        const content = await getPrograms();
+        setPurchasedProgram((prevProgram) => {
+          if (prevProgram === null) {
+            return null;
+          }
+          return {
+            ...prevProgram,
+            content: content,
+          };
+        });
+      } else if (purchasedProgram?.uri) {
         const content = await getProgramByURI(purchasedProgram.uri);
         setPurchasedProgram((prevProgram) => {
           if (prevProgram === null) {
