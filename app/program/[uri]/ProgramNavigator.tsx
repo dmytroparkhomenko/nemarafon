@@ -13,7 +13,7 @@ import {
   incrementWatchedVideos,
   saveLastWatchedVideo,
   getLastWatchedVideo,
-} from "./videoCouterStorage";
+} from "./videoCounterStorage";
 
 const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
   currentURI,
@@ -26,29 +26,24 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
     : program;
   const content = selectedProgram?.programFields?.programContent;
 
-  const [currentVideoId, setCurrentVideoId] = useState(0); //getLastWatchedVideo()
-  const lastWatchedVideo = parseInt(
-    localStorage.getItem("lastWatchedVideo") || "0"
-  );
+  const initialVideoId = getLastWatchedVideo(currentURI);
+  const [currentVideoId, setCurrentVideoId] = useState(initialVideoId);
 
   const handleNextVideo = () => {
     const nextVideoId = currentVideoId + 1;
     if (nextVideoId < content.length) {
       setCurrentVideoId(nextVideoId);
-      incrementWatchedVideos();
-      saveLastWatchedVideo(nextVideoId);
+      incrementWatchedVideos(currentURI);
+      saveLastWatchedVideo(currentURI, nextVideoId);
     }
   };
 
   const handlePreviousVideo = () => {
     if (currentVideoId > 0) {
-      setCurrentVideoId(currentVideoId - 1);
-      saveLastWatchedVideo(currentVideoId - 1);
+      const prevVideoId = currentVideoId - 1;
+      setCurrentVideoId(prevVideoId);
+      saveLastWatchedVideo(currentURI, prevVideoId);
     }
-  };
-
-  const handleContinueWatching = () => {
-    setCurrentVideoId(lastWatchedVideo);
   };
 
   const videoLink =
@@ -85,13 +80,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
           <span className="hidden md:block">Попереднє відео</span>
         </a>
         <div className="uppercase font-bold text-gold text-sm md:text-[18px]">
-          {currentVideoId !== lastWatchedVideo ? (
-            <button onClick={handleContinueWatching}>
-              Продовжити: Лекція #{lastWatchedVideo + 1}
-            </button>
-          ) : (
-            <span>Лекція #{currentVideoId + 1}</span>
-          )}
+          <span>Лекція #{currentVideoId + 1}</span>
         </div>
         <a
           className="flex items-center gap-1 text-sm cursor-pointer"

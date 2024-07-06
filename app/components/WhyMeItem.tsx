@@ -1,7 +1,7 @@
 export default function WhyMeItem() {
   return (
     <>
-      <div className="flex flex-col md:flex-row items-center my-6 gap-2">
+      <div className="flex flex-col md:flex-row items-center text-center my-6 gap-2">
         <span className="text-white text-6xl md:text-8xl font-bold md:mr-14 font-titles max-w-[30px]">
           1
         </span>
@@ -16,7 +16,7 @@ export default function WhyMeItem() {
           </p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-center my-6 gap-2">
+      <div className="flex flex-col md:flex-row items-center text-center my-6 gap-2">
         <span className="text-white text-6xl md:text-8xl font-bold md:mr-14 font-titles max-w-[30px]">
           2
         </span>
@@ -31,7 +31,7 @@ export default function WhyMeItem() {
           </p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-center my-6 gap-2">
+      <div className="flex flex-col md:flex-row items-center text-center my-6 gap-2">
         <span className="text-white text-6xl md:text-8xl font-bold md:mr-14 font-titles max-w-[30px]">
           3
         </span>

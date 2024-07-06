@@ -30,7 +30,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
   if (!user) {
     return (
       <AppLayout>
-        <div className="flex flex-col md:flex-row justify-between md:py-8 h-full">
+        <div className="flex flex-col md:flex-row justify-start md:justify-between md:py-8 h-full">
           <TopNavbar myProgram={params.uri} />
           <AuthLayer
             isLogin={isLogin}
@@ -48,7 +48,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
         purchasedProgram.content &&
         !expired) ||
       purchasedProgram?.isAdmin ? (
-        <div className="flex flex-col md:flex-row justify-between md:py-8 h-[-webkit-fill-available]">
+        <div className="flex flex-col md:flex-row md:justify-between justify-start md:py-8 h-[-webkit-fill-available]">
           <TopNavbar myProgram={params.uri} />
           <Suspense fallback={<Loading />}>
             <ProgramNavigator
@@ -58,7 +58,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
           </Suspense>
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row md:items-center justify-between py-10 h-full">
+        <div className="flex flex-col md:flex-row md:items-center justify-start md:justify-between py-10 h-full">
           {expired ? (
             <div className="md:mb-0 mb-10">
               <h2 className="text-2xl md:text-4xl text-left md:mb-2">

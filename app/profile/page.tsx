@@ -43,7 +43,7 @@ export default function Profile() {
 
   return (
     <AppLayout>
-      <div className="flex flex-col items-stretch md:flex-row justify-between md:my-8 h-[-webkit-fill-available]">
+      <div className="flex flex-col items-stretch md:flex-row justify-start md:justify-between md:my-8 h-[-webkit-fill-available]">
         <TopNavbar
           myProgram={`/program/${
             purchasedProgram ? purchasedProgram?.uri : "#"

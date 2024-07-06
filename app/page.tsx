@@ -29,7 +29,7 @@ export default async function Home() {
               styles={"w-[900px] h-[900px] hidden md:block blur-[65px]"}
             />
             <Heading>Про мене</Heading>
-            <div className="flex flex-col md:flex-row items-center">
+            <div className="flex flex-col md:flex-row items-center text-center">
               <div className="flex justify-center w-full md:w-1/2">
                 <img
                   className="w-full max-w-[500px] rounded-[15px] md:rounded-[50px] z-10"
