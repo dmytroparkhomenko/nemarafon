@@ -14,7 +14,6 @@ import AppLayout from "../components/AppLayout";
 
 export default function Profile() {
   const { user, loading, purchasedProgram } = useAuth();
-
   const [isLogin, setIsLogin] = useState(true);
   const [programContent, setProgramContent] = useState<ProgramData | null>(
     null
@@ -50,6 +49,7 @@ export default function Profile() {
           }`}
           isProgramPage={false}
         />
+
         {user ? (
           <UserProfile programContent={programContent} />
         ) : (

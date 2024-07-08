@@ -27,7 +27,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({ params }) => {
     return <Loading />;
   }
 
-  if (!user) {
+  if (!user || !user.emailVerified) {
     return (
       <AppLayout>
         <div className="flex flex-col md:flex-row justify-start md:justify-between md:py-8 h-full">

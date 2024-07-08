@@ -68,7 +68,7 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
         <label className="block text-sm font-medium mb-1">
           Доступ до програми
         </label>
-        <p className="text-sm">6 тижнів</p>
+        <p className="text-sm">7 тижнів</p>
       </div>
 
       <div className="mb-4">

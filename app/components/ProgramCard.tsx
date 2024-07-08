@@ -14,17 +14,20 @@ export default function ProgramCard({
   uri,
 }: ProgramCardProps) {
   const [isOpen, setOpen] = useState(false);
+  const backgroundImageUrl =
+    programFields.programCardBackground?.node?.sourceUrl ||
+    "/sources/temp/card0.jpg";
 
   return (
     <div
       className="flex flex-col justify-between rounded-[40px] py-16 px-12 w-full md:min-w-[600px] min-h-[400px] bg-center bg-no-repeat bg-cover"
-      style={{ backgroundImage: "url('/sources/temp/card.png')" }}
+      style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     >
       <div>
         <h3 className="text-ivory md:text-marine">{title}</h3>
-        <ul className={`${!isOpen ? "hidden" : "block"} md:block mt-4`}>
+        <ul className={`${!isOpen ? "hidden" : "block"} md:block mt-6`}>
           {programFields.programDescription?.map((description, index) => (
-            <li key={index} className="font-light mb-1">
+            <li key={index} className="font-light mb-[0.4rem]">
               - {description.programDescriptionItem}
             </li>
           ))}

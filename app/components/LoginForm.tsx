@@ -32,7 +32,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, title }) => {
         email,
         password
       );
-      return userCredential.user;
+      if (userCredential.user.emailVerified) {
+        console.log("Login successful, email verified.");
+        return userCredential.user;
+      } else {
+        await auth.signOut();
+        setError(
+          `Підтвердіть вашу електрону адресу ${email}, щоб придбати програму`
+        );
+      }
     } catch (error) {
       setError("Помилка авторизації. Логін або пароль невірні.");
       console.error("Error signing in with email and password", error);

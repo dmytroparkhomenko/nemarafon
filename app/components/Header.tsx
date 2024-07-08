@@ -63,8 +63,8 @@ export default function Header() {
               <Langs />
               <Link href="/profile" className="flex items-center gap-3">
                 <Profile />
-                {!loading && user ? (
-                  <span className="uppercase">{user.displayName}</span>
+                {!loading ? (
+                  <span className="uppercase">{user?.displayName}</span>
                 ) : null}
               </Link>
             </div>
@@ -134,8 +134,8 @@ export function HeaderProgramPage() {
             <Langs />
             <Link href="/profile" className="flex items-center gap-3">
               <Profile />
-              {!loading && user ? (
-                <span className="uppercase">{user.displayName}</span>
+              {!loading ? (
+                <span className="uppercase">{user?.displayName}</span>
               ) : null}
             </Link>
           </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 
 import Image from "next/image";
 import GoogleIcon from "@/app/components/symbols/GoogleIcon.svg";
@@ -9,11 +8,13 @@ import EyeIcon from "../components/symbols/Eye.svg";
 
 interface LoginFormProps {
   switchToLogin: () => void;
+  // setEmailSent: (arg0: boolean) => void;
 }
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
+  sendEmailVerification,
 } from "firebase/auth";
 import { firebaseApp } from "../firebase/config";
 import { signInWithGoogle } from "../firebase/auth";
@@ -28,7 +29,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
   const [showPasswords, setShowPasswords] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleManualSignUp = (event: React.FormEvent) => {
+  const handleManualSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (password !== confirmationPassword) {
@@ -36,16 +37,18 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        return updateProfile(userCredential.user, { displayName: name });
-      })
-      .catch((error) => {
-        setError(
-          "Помилка реєстрації акаунту. Будь ласка, перевірте введені дані."
-        );
-        console.error("Error registering with email and password", error);
-      });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(userCredential.user, { displayName: name });
+      await sendEmailVerification(userCredential.user);
+    } catch (error) {
+      setError("Failed to register. Please check your input.");
+      console.error("Registration error", error);
+    }
   };
 
   return (

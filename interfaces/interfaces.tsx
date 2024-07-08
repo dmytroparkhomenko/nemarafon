@@ -6,6 +6,11 @@ export interface ProgramCardProps {
   programFields: {
     programPrice: number | null;
     programShortDescription: string | null;
+    programCardBackground: {
+      node: {
+        sourceUrl: string;
+      };
+    } | null;
     programDescription: Array<{
       __typename: string;
       programDescriptionItem: string;

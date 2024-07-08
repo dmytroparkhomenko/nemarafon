@@ -1,12 +1,17 @@
 export async function getPrograms() {
   const query = `
     {
-      posts {
+      posts  {
         nodes {
           uri
           title
           programFields {
             programPrice
+            programCardBackground {
+              node {
+                sourceUrl
+              }
+            }
             programShortDescription
             programDescription {
               __typename
