@@ -4,11 +4,12 @@ import { StrictMode } from "react";
 import "./globals.scss";
 
 import { AuthProvider } from "./AuthContext";
+// import { nextArtFont } from "./fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nemarafon",
+  title: "НЕмарафон 2024 | Анастасія Бутенко",
   description: "Digital marketplace for selling fitness programs",
 };
 
@@ -21,12 +22,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <StrictMode>
       <html lang="uk-UA">
         <head>
-          <style>
-            <link
-              href="https://fonts.cdnfonts.com/css/next-art"
-              rel="stylesheet"
-            />
-          </style>
+          <link
+            href="https://fonts.cdnfonts.com/css/next-art"
+            rel="stylesheet"
+          />
         </head>
         <body
           className={`overflow-x-hidden md:overscroll-none ${inter.className}`}

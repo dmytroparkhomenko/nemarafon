@@ -77,3 +77,36 @@ export interface ProgramNavigatorProps {
   program: Program;
   currentURI: string;
 }
+
+// results & reviews fetching
+interface ImageNode {
+  altText: string;
+  sourceUrl: string;
+}
+
+interface ImageData {
+  resultImage: {
+    node: ImageNode;
+  };
+}
+
+export interface ResultsData {
+  studioResultsCollection: ImageData[];
+  homeResultsCollection: ImageData[];
+}
+
+interface ReviewCustomerImage {
+  node: ImageNode;
+}
+
+interface Review {
+  reviewCustomerName: string;
+  // reviewCustomerImage: ReviewCustomerImage;
+  reviewCustomerProgram: string;
+  reviewCustomerRate: number;
+  reviewCustomerReview: string;
+}
+
+export interface ReviewsData {
+  review: Review[];
+}

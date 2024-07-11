@@ -27,7 +27,7 @@ export default function ProgramCard({
         <h3 className="text-ivory md:text-marine">{title}</h3>
         <ul className={`${!isOpen ? "hidden" : "block"} md:block mt-6`}>
           {programFields.programDescription?.map((description, index) => (
-            <li key={index} className="font-light mb-[0.4rem]">
+            <li key={index} className="font-light mb-[0.5rem]">
               - {description.programDescriptionItem}
             </li>
           ))}

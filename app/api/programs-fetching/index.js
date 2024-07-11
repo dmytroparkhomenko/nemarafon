@@ -121,3 +121,85 @@ export async function getPostDataForPayment(uri) {
 
   return data.post;
 }
+
+export async function getResults() {
+  const query = `
+    {
+      results {
+        resultsFields {
+          studioResultsCollection {
+            resultImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+          }
+          homeResultsCollection {
+            resultImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT}?query=${encodeURIComponent(
+      query
+    )}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      next: {
+        revalidate: 0,
+      },
+    }
+  );
+
+  const { data } = await res.json();
+
+  return data.results.resultsFields;
+}
+
+export async function getReviews() {
+  const query = `
+    {
+      reviews {
+        reviewFields {
+          review {
+            reviewCustomerName
+            reviewCustomerProgram
+            reviewCustomerRate
+            reviewCustomerReview
+          }
+        }
+      }
+    }
+  `;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT}?query=${encodeURIComponent(
+      query
+    )}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      next: {
+        revalidate: 0,
+      },
+    }
+  );
+
+  const { data } = await res.json();
+
+  return data.reviews.reviewFields;
+}

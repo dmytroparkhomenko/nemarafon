@@ -25,12 +25,8 @@ export default function Footer() {
       />
       <div className="flex flex-col text-center md:mb-10">
         <div className="flex justify-center gap-6 text-marine uppercase text-lg font-light">
-          <a className="" href="#">
-            INSTAGRAM
-          </a>
-          <a className="" href="#">
-            TELEGRAM
-          </a>
+          <a href="https://www.instagram.com/butenkoanastasia/">INSTAGRAM</a>
+          <a href="https://t.me/nemarafon_Butenko">TELEGRAM</a>
         </div>
       </div>
       <div className="flex justify-between items-center mt-7">

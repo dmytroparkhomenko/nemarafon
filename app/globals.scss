@@ -1,40 +1,40 @@
-// @import url("https://fonts.cdnfonts.com/css/next-art");
+@import url("https://fonts.cdnfonts.com/css/next-art");
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
-// @font-face {
-//   font-family: "NEXT ART";
-//   font-style: normal;
-//   font-weight: 300;
-//   src: url("/fonts/NEXT_ART_Light.otf") format("opentype");
-// }
+@font-face {
+  font-family: "NEXT ART";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/NEXT_ART_Light.otf") format("opentype");
+}
 
-// @font-face {
-//   font-family: "NEXT ART";
-//   font-style: normal;
-//   font-weight: 400;
-//   src: url("/fonts/NEXT_ART_Regular.otf") format("opentype");
-// }
+@font-face {
+  font-family: "NEXT ART";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/NEXT_ART_Regular.otf") format("opentype");
+}
 
-// @font-face {
-//   font-family: "NEXT ART";
-//   font-style: normal;
-//   font-weight: 600;
-//   src: url("/fonts/NEXT_ART_SemiBold.otf") format("opentype");
-// }
+@font-face {
+  font-family: "NEXT ART";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/NEXT_ART_SemiBold.otf") format("opentype");
+}
 
-// @font-face {
-//   font-family: "NEXT ART";
-//   font-style: normal;
-//   font-weight: 700;
-//   src: url("/fonts/NEXT_ART_Bold.otf") format("opentype");
-// }
+@font-face {
+  font-family: "NEXT ART";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/NEXT_ART_Bold.otf") format("opentype");
+}
 
-// @font-face {
-//   font-family: "NEXT ART";
-//   font-style: normal;
-//   font-weight: 800;
-//   src: url("/fonts/NEXT_ART_Heavy.otf") format("opentype");
-// }
+@font-face {
+  font-family: "NEXT ART";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/fonts/NEXT_ART_Heavy.otf") format("opentype");
+}
 
 @tailwind base;
 @tailwind components;
@@ -43,6 +43,7 @@
 body {
   background-color: #000;
   color: #fff;
+  font-family: "NEXT ART", sans-serif;
 }
 
 h1 {
