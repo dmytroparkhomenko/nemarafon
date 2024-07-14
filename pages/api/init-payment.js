@@ -1,4 +1,4 @@
-import LiqPay from "./liqpay";
+import LiqPay from "./lib";
 
 export default async function handler(req, res) {
   const { amount } = req.body;
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     amount: amount,
     currency: "USD",
     description: "Test Payment",
-    order_id: "order_" + new Date().getTime(), // Ensure unique order IDs in production
+    order_id: "order_" + new Date().getTime(),
     version: "3",
   };
 
