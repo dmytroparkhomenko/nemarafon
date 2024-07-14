@@ -4,11 +4,10 @@ import React, { useState } from "react";
 
 import Image from "next/image";
 import GoogleIcon from "@/app/components/symbols/GoogleIcon.svg";
-import EyeIcon from "../components/symbols/Eye.svg";
+import EyeIcon from "@/app/components/symbols/Eye.svg";
 
 interface LoginFormProps {
   switchToLogin: () => void;
-  // setEmailSent: (arg0: boolean) => void;
 }
 import {
   getAuth,
@@ -16,8 +15,8 @@ import {
   updateProfile,
   sendEmailVerification,
 } from "firebase/auth";
-import { firebaseApp } from "../firebase/config";
-import { signInWithGoogle } from "../firebase/auth";
+import { firebaseApp } from "../../firebase/config";
+import { signInWithGoogle } from "../../firebase/auth";
 
 const auth = getAuth(firebaseApp);
 
@@ -134,7 +133,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
               type="submit"
               className="w-full mt-4 py-[6px] md:py-[8px] bg-marine rounded-full text-center font-light text-[20px] uppercase"
             >
-              Створити аккаунт
+              Створити акаунт
             </button>
           </div>
           <div className="flex flex-col items-center justify-between mt-6">
@@ -157,7 +156,7 @@ const RegisterForm: React.FC<LoginFormProps> = ({ switchToLogin }) => {
               onClick={switchToLogin}
               type="button"
             >
-              У мене вже є аккаунт
+              У мене вже є акаунт
             </button>
           </div>
         </form>

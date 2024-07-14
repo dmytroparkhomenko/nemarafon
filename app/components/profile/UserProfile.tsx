@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import DefaultUserProfileImage from "@/public/sources/temp/review.png";
-import Button from "@/app/components/Button";
-import { useAuth } from "../AuthContext";
+import Button from "@/app/components/common/Button";
+import { useAuth } from "../../AuthContext";
 
-import Loading from "../loading";
+import Loading from "../../loading";
 import Link from "next/link";
 
 interface UserProfileProps {
@@ -45,7 +45,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ programContent }) => {
             className="md:mt-0 px-4 !text-sm !w-auto"
             onClick={() => signOut()}
           >
-            Вийти з аккаунту
+            Вийти з акаунту
           </Button>
         </div>
         <div className="w-full md:px-10">
@@ -56,7 +56,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ programContent }) => {
               </h3>
               <p>
                 Ми відправили вам лист з посиланням на підтвердження реєстрації
-                аккаунту на вказану адресу: {user?.email}
+                акаунту на вказану адресу: {user?.email}
               </p>
             </div>
           ) : null}
@@ -109,7 +109,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ programContent }) => {
             <>
               <p>{programContent?.programFields.programShortDescription}</p>
               <p className="mt-1">
-                Підписка на програму до: {purchasedProgram?.expirationDate}
+                Програма доступна до: {purchasedProgram?.expirationDate}
               </p>
             </>
           ) : null}

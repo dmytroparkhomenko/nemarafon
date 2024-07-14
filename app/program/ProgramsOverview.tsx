@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 
-import ScrollPointers from "../components/ScrollPointers";
-import Heading from "../components/Heading";
-import ProgramCard from "../components/ProgramCard";
+import ScrollPointers from "../components/common/ScrollPointers";
+import Heading from "../components/common/Heading";
+import ProgramCard from "../components/utility/ProgramCard";
 
 import { ProgramCardProps } from "@/interfaces/interfaces";
 

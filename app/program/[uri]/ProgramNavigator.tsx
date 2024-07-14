@@ -5,7 +5,7 @@ import { Suspense, useState } from "react";
 
 import Arrow from "@/app/components/symbols/Arrow.svg";
 
-import VideoEmbed from "@/app/components/VideoEmbed";
+import VideoEmbed from "@/app/components/video/VideoEmbed";
 import Loading from "./loading";
 
 import { ProgramNavigatorProps } from "@/interfaces/interfaces";

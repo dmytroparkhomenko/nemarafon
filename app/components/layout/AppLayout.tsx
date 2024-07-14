@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { HeaderProgramPage } from "./Header";
+import { HeaderProgramPage } from "@/app/components/common/Header";
 
 interface AppLayoutProps {
   children: ReactNode;

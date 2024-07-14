@@ -4,11 +4,11 @@ import React, { useState, Suspense } from "react";
 import { useAuth } from "@/app/AuthContext";
 import ProgramNavigator from "./ProgramNavigator";
 import Loading from "./loading";
-import TopNavbar from "@/app/components/TopNavbar";
+import TopNavbar from "@/app/components/navigation/TopNavbar";
 import PaymentForm from "./PaymentForm";
 import { ProgramPageProps } from "@/interfaces/interfaces";
-import AuthLayer from "@/app/components/AuthLayer";
-import AppLayout from "@/app/components/AppLayout";
+import AuthLayer from "@/app/components/layout/AuthLayer";
+import AppLayout from "@/app/components/layout/AppLayout";
 
 const hasProgramExpired = (expiryDate: string) => {
   const currentDate = new Date();

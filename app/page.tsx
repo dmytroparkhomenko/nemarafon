@@ -1,14 +1,14 @@
 "use server";
 
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import Header from "@/app/components/common/Header";
+import Footer from "@/app/components/common/Footer";
 import ProgramsOverview from "@/app/program/ProgramsOverview";
-import WhyMeItem from "./components/WhyMeItem";
-import Heading from "./components/Heading";
+import WhyMeItem from "./components/utility/WhyMeSection";
+import Heading from "./components/common/Heading";
 
 import { Elipse } from "./components/symbols/symbols";
-import Reviews from "./components/Reviews";
-import Results from "./components/Results";
+import Reviews from "./components/utility/Reviews";
+import Results from "./components/utility/Results";
 import { getPrograms } from "./api/programs-fetching";
 import { ProgramCardProps } from "@/interfaces/interfaces";
 

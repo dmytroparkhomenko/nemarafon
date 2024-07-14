@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 
-import Heading from "./Heading";
-import ScrollPointers from "./ScrollPointers";
+import Heading from "../common/Heading";
+import ScrollPointers from "../common/ScrollPointers";
 import ResultPagePlaceholder from "@/public/sources/temp/results.png";
 
-import { getResults } from "../api/programs-fetching";
+import { getResults } from "../../api/programs-fetching";
 import { ResultsData } from "@/interfaces/interfaces";
 
 export default function Results() {

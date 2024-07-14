@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Logo, LogoMobile } from "./symbols/symbols";
-import Navbar from "@/app/components/Navbar";
+import { Logo, LogoMobile } from "@/app/components/symbols/symbols";
+import Navbar from "@/app/components/navigation/Navbar";
 
-import Visa from "./symbols/Visa.svg";
-import Mastercard from "./symbols/Mastercard.svg";
+import Visa from "@/app/components/symbols/Visa.svg";
+import Mastercard from "@/app/components/symbols/Mastercard.svg";
 
 export default function Footer() {
   return (

@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-
-import Button from "./Button";
 import Image from "next/image";
-import Vector from "./symbols/Vector.svg";
+import Vector from "@/app/components/symbols/Vector.svg";
 
 import { ProgramCardProps } from "@/interfaces/interfaces";
+import Button from "../common/Button";
 
 export default function ProgramCard({
   title,

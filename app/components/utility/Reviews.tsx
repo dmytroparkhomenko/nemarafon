@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 
-import ScrollPointers from "./ScrollPointers";
-import Heading from "./Heading";
-import Star from "./symbols/Star.svg";
+import ScrollPointers from "../common/ScrollPointers";
+import Heading from "../common/Heading";
+import Star from "../symbols/Star.svg";
 
-import { getReviews } from "../api/programs-fetching";
+import { getReviews } from "../../api/programs-fetching";
 import { ReviewsData } from "@/interfaces/interfaces";
 
 export default function Reviews() {
@@ -19,7 +19,7 @@ export default function Reviews() {
   }, []);
 
   return (
-    <section id="reviews" className="mt-40 mb-20">
+    <section id="reviews" className="mt-40">
       <Heading>Відгуки</Heading>
       <div
         className="flex items-stretch md:items-start flex-row overflow-x-auto space-x-6 scroll-smooth mt-10 gap-5 md:gap-10"

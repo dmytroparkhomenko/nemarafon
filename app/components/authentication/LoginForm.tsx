@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import GoogleIcon from "@/app/components/symbols/GoogleIcon.svg";
-import EyeIcon from "../components/symbols/Eye.svg";
+import EyeIcon from "@/app/components/symbols/Eye.svg";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { firebaseApp } from "../firebase/config";
-import { signInWithGoogle } from "../firebase/auth";
+import { firebaseApp } from "../../firebase/config";
+import { signInWithGoogle } from "../../firebase/auth";
 
 const auth = getAuth(firebaseApp);
 
@@ -51,7 +51,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, title }) => {
     <>
       <div className="w-full md:w-1/2 md:mx-auto">
         <h3 className="mb-4 text-left text-ivory text-xl md:text-2xl">
-          {title || "Увійдіть до аккаунту"}
+          {title || "Увійдіть до акаунту"}
         </h3>
         <form className="pt-4 pb-8 mb-4 w-full" onSubmit={handleManualSignIn}>
           <div className="mb-4">
@@ -117,7 +117,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, title }) => {
               onClick={switchToRegister}
               type="button"
             >
-              У мене ще немає аккаунту
+              У мене ще немає акаунту
             </button>
           </div>
         </form>

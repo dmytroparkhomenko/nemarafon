@@ -1,9 +1,8 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import Visa from "@/app/components/symbols/Visa.svg";
 import Mastercard from "@/app/components/symbols/Mastercard.svg";
 import Privat from "@/app/components/symbols/Privat.svg";
-import { ProgramCardProps } from "@/interfaces/interfaces";
 import { getPostDataForPayment } from "@/app/api/programs-fetching";
 
 interface PaymentFormProps {

@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 
-import Navbar from "@/app/components/Navbar";
-import Button from "@/app/components/Button";
+import Navbar from "@/app/components/navigation/Navbar";
+import Button from "./Button";
 import {
   Logo,
   LogoMobile,
@@ -15,7 +15,7 @@ import {
   InstagramLogo,
 } from "@/app/components/symbols/symbols";
 import Link from "next/link";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "@/app/AuthContext";
 
 const Langs = () => {
   return (

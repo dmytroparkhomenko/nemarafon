@@ -25,9 +25,9 @@ export interface ProgramCardProps {
 export interface ProgramData {
   uri?: string;
   title: string;
-  description: string;
-  purchaseDate: string;
-  expires: string;
+  description?: string;
+  purchaseDate?: string;
+  expires?: string;
 }
 
 export interface ProgramPageProps {

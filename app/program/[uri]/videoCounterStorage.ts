@@ -1,7 +1,6 @@
 // temp
-// videoCounterStorage.ts
-const WATCHED_COUNT_KEY = "watchedVideosCount_"; // Base key
-const LAST_WATCHED_VIDEO_KEY = "lastWatchedVideo_"; // Base key
+const WATCHED_COUNT_KEY = "watchedVideosCount_";
+const LAST_WATCHED_VIDEO_KEY = "lastWatchedVideo_";
 
 export function incrementWatchedVideos(programURI: string) {
   const key = WATCHED_COUNT_KEY + programURI;

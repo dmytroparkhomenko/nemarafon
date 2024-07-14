@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 import Image from "next/image";
-import Arrow from "./symbols/Arrow.svg";
+import Arrow from "@/app/components/symbols/Arrow.svg";
 
 import { ScrollPointersProps } from "@/interfaces/interfaces";
 

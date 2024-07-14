@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 
-import AuthLayer from "../components/AuthLayer";
-import UserProfile from "../components/UserProfile";
-import { useAuth } from "../AuthContext";
+import AuthLayer from "@/app/components/layout/AuthLayer";
+import UserProfile from "@/app/components/profile/UserProfile";
+import { useAuth } from "@/app/AuthContext";
 
-import TopNavbar from "../components/TopNavbar";
+import TopNavbar from "@/app/components/navigation/TopNavbar";
 import Loading from "../loading";
 import { getProgramByURI } from "../api/programs-fetching";
 import { ProgramData } from "@/interfaces/interfaces";
-import AppLayout from "../components/AppLayout";
+import AppLayout from "@/app/components/layout/AppLayout";
 
 export default function Profile() {
   const { user, loading, purchasedProgram } = useAuth();
@@ -26,11 +26,7 @@ export default function Profile() {
         setProgramContent(content);
       } else {
         setProgramContent({
-          uri: "",
           title: "Ви ще не придбали жодної програми",
-          description: "",
-          purchaseDate: "",
-          expires: "",
         });
       }
     }

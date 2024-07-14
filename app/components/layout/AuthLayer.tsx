@@ -1,9 +1,10 @@
 import React from "react";
 
-import LoginForm from "@/app/components/LoginForm";
-import RegisterForm from "@/app/components/RegisterForm";
-import { useAuth } from "../AuthContext";
-import Button from "./Button";
+import LoginForm from "@/app/components/authentication/LoginForm";
+import RegisterForm from "@/app/components/authentication/RegisterForm";
+
+import { useAuth } from "../../AuthContext";
+import Button from "../common/Button";
 
 interface AuthLayerProps {
   isLogin: boolean;
@@ -27,7 +28,7 @@ export default function AuthLayer({
       <div>
         <h2 className="text-lg md:text-xl text-white text-left mb-2">
           Ми відправили вам на {user.email} лист для підтвердження реєстрації
-          аккаунту.
+          акаунту.
         </h2>
         <Button onClick={handleRefresh}>Підтвердив(-ла)</Button>
       </div>
