@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchWhyMeSections } from "@/app/api/programs-fetching";
+import { getWhyMeSection } from "@/app/api/programs-fetching";
 import React, { useEffect, useState } from "react";
 
 interface WhyMeSectionItem {
@@ -14,8 +14,8 @@ export default function WhyMeSection() {
   const [sections, setSections] = useState<WhyMeSectionItem[]>([]);
 
   useEffect(() => {
-    fetchWhyMeSections()
-      .then((data) => {
+    getWhyMeSection()
+      .then((data: any) => {
         setSections(data);
       })
       .catch(console.error);

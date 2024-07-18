@@ -147,7 +147,26 @@ export async function getReviews() {
   return data.reviews.reviewFields;
 }
 
-export async function fetchWhyMeSections() {
+export async function getWhyMeSection() {
+  const query = `
+    {
+      whyMeSectionRoot {
+        whyMeSection {
+          whymesectionRepeater {
+            whymesectionRepeaterItem {
+              whymesectionRepeaterItemTitle
+              whymesectionRepeaterItemContent
+            }
+          }
+        }
+      }
+    }`;
+
+  const data = await fetchGraphQL(query);
+  return data.whyMeSectionRoot.whyMeSection.whymesectionRepeater;
+}
+
+export async function getAboutMeSection() {
   const query = `
     {
       whyMeSectionRoot {

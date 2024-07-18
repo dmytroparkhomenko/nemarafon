@@ -49,7 +49,7 @@ export default function Header() {
     <>
       {(isNavbarOpen || !isMobile) && (
         <Navbar
-          navStyles="absolute top-[85px] md:top-[7%] w-[90%] md:w-fit bg-marine md:bg-transparent"
+          navStyles="absolute top-[85px] md:top-[50vh] md:translate-y-[-50%] w-[90%] md:w-fit bg-marine md:bg-transparent"
           ulStyles={"flex-col gap-6"}
         />
       )}
