@@ -23,7 +23,16 @@ export default function ProgramCard({
       style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     >
       <div>
-        <h3 className="text-ivory md:text-marine">{title}</h3>
+        <h3 className="md:hidden">
+          {title === "Тренування в залі та вдома" ? (
+            <>
+              Тренування <br /> в залі та вдома
+            </>
+          ) : (
+            title
+          )}
+        </h3>
+        <h3 className="text-ivory md:text-marine hidden md:block">{title}</h3>
         <ul className={`${!isOpen ? "hidden" : "block"} md:block mt-6`}>
           {programFields.programDescription?.map((description, index) => (
             <li key={index} className="font-light mb-[0.5rem]">
