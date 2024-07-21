@@ -30,7 +30,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
   };
 
   return (
-    <div className="w-full md:w-2/3">
+    <div className="w-full md:w-2/3 mb-4 md:mb-0">
       <h3 className="text-white text-lg md:text-2xl font-light mb-8">
         {selectedProgram?.title}
       </h3>
