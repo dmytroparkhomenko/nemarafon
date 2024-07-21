@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import VideoList from "./VideoList";
-import VideoPlayer from "./VideoPlayer";
+import VideoList from "@/app/components/video/VideoList";
+import VideoPlayer from "@/app/components/video/VideoPlayer";
 import Loading from "./loading";
-import Toggler from "./Toggler";
+import Toggler from "@/app/components/common/Toggler";
 
 import { ProgramNavigatorProps } from "@/interfaces/interfaces";
 
@@ -19,7 +19,7 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
     : program;
   const content = selectedProgram?.programFields?.programContent;
 
-  const [viewMode, setViewMode] = useState<"list" | "player">("list"); // 'list' or 'player'
+  const [viewMode, setViewMode] = useState<"list" | "player">("list");
 
   if (!program) {
     return <Loading />;
@@ -31,13 +31,12 @@ const ProgramNavigator: React.FC<ProgramNavigatorProps> = ({
 
   return (
     <div className="w-full md:w-2/3">
-      <h3 className="text-white text-lg md:text-2xl font-light mb-6">
+      <h3 className="text-white text-lg md:text-2xl font-light mb-8">
         {selectedProgram?.title}
       </h3>
       <div className="mb-4 flex items-center">
-        <span className="mr-2 text-white">сітка</span>
         <Toggler onToggle={handleToggle} />
-        <span className="ml-2 text-white">програвач</span>
+        <span className="ml-2 text-white">програвач (економія ресурсів)</span>
       </div>
       {viewMode === "player" ? (
         <VideoPlayer content={content} currentURI={currentURI} />

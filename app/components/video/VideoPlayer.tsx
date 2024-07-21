@@ -4,12 +4,12 @@ import { Suspense, useState } from "react";
 import Image from "next/image";
 import Arrow from "@/app/components/symbols/Arrow.svg";
 import VideoEmbed from "@/app/components/video/VideoEmbed";
-import Loading from "./loading";
+import Loading from "../../program/[uri]/loading";
 import {
   incrementWatchedVideos,
   saveLastWatchedVideo,
   getLastWatchedVideo,
-} from "./videoCounterStorage";
+} from "../../lib/videoCounterStorage";
 
 interface VideoPlayerProps {
   content: Array<{

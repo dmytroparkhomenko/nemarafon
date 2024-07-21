@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Arrow from "@/app/components/symbols/Arrow.svg";
 import VideoEmbed from "@/app/components/video/VideoEmbed";
-import Loading from "./loading";
-import { saveLastViewedPage, getLastViewedPage } from "./videoPageStorage";
+import {
+  saveLastViewedPage,
+  getLastViewedPage,
+} from "../../lib/videoPageStorage";
 
 interface VideoListProps {
   content: Array<{
@@ -44,7 +46,10 @@ const VideoList: React.FC<VideoListProps> = ({ content, currentURI }) => {
         {currentVideos && currentVideos.length > 0 ? (
           currentVideos.map((video, index) => (
             <div key={index} className="w-full">
-              <VideoEmbed embedId={video.programVideoLink} />
+              <VideoEmbed
+                embedId={video.programVideoLink}
+                styling={"h-[220px] md:h-[220px]"}
+              />
             </div>
           ))
         ) : (
