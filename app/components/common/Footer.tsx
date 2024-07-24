@@ -4,12 +4,13 @@ import Navbar from "@/app/components/navigation/Navbar";
 
 import Visa from "@/app/components/symbols/Visa.svg";
 import Mastercard from "@/app/components/symbols/Mastercard.svg";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer
       id="footer"
-      className="w-full px-5 md:px-24 py-12 md:py-16 bg-cover bg-right z-0 bg-[url('/sources/footer-bg.jpg')]"
+      className="w-full px-5 md:px-24 py-12 md:py-16 bg-cover bg-right z-0 bg-[url('/sources/footer-bg.jpg')] rounded-3xl"
     >
       <div className="hidden md:block mx-auto">
         <Logo isCentered={true} />
@@ -30,7 +31,12 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex justify-between items-center mt-7">
-        <p className="text-gray-500 uppercase text-base ">© 2024 НЕмарафон</p>
+        <div>
+          <p className="text-gray-500 uppercase text-base ">© 2024 НЕмарафон</p>
+          <p className="text-gray-500 uppercase text-base mt-2">
+            ФОП "Бутенко Анастасія Миколаївна"
+          </p>
+        </div>
         <div className="flex items-center gap-4">
           <Image
             src={Visa}
@@ -45,7 +51,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col gap-3 text-gray-500 mt-6">
-        <a href="#">Договiр публiчної оферти </a>
+        <Link href="/terms">Договiр публiчної оферти </Link>
         <a href="#">Політика використання файлів cookie умови користування</a>
         <a href="#">Політика конфіденційності </a>
       </div>
