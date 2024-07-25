@@ -50,10 +50,11 @@ export default function Footer() {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-3 text-gray-500 mt-6">
+      <div className="flex flex-col text-gray-500 mt-6">
         <Link href="/terms">Договiр публiчної оферти </Link>
-        <a href="#">Політика використання файлів cookie умови користування</a>
-        <a href="#">Політика конфіденційності </a>
+        <Link className="mt-2" href="mailto:butenkonastia2603@gmail.com">
+          Звʼязок та підтримка: butenkonastia2603@gmail.com
+        </Link>
       </div>
     </footer>
   );
