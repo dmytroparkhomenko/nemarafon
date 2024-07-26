@@ -3,8 +3,8 @@ import LiqPay from "./lib";
 export default async function handler(req, res) {
   const { amount } = req.body;
   const liqPay = new LiqPay(
-    process.env.LIQPAY_PUBLIC_KEY,
-    process.env.LIQPAY_PRIVATE_KEY
+    process.env.NEXT_PUBLIC_LIQPAY_PUBLIC_KEY,
+    process.env.NEXT_PUBLIC_LIQPAY_PRIVATE_KEY
   );
 
   const params = {
