@@ -1,23 +1,30 @@
 import LiqPay from "./lib";
+import crypto from "crypto";
 
 export default async function handler(req, res) {
   const { amount } = req.body;
-  const liqPay = new LiqPay(
-    process.env.NEXT_PUBLIC_LIQPAY_PUBLIC_KEY,
-    process.env.NEXT_PUBLIC_LIQPAY_PRIVATE_KEY
-  );
+  const publicKey = process.env.LIQPAY_PUBLIC_KEY; // Replace with your actual public key if not using env variables
+  const privateKey = process.env.LIQPAY_PRIVATE_KEY;
 
   const params = {
+    public_key: publicKey,
+    version: "3",
     action: "pay",
     amount: amount,
-    currency: "USD",
+    currency: "UAH",
     description: "Test Payment",
     order_id: "order_" + new Date().getTime(),
-    version: "3",
   };
 
   const data = Buffer.from(JSON.stringify(params)).toString("base64");
-  const signature = liqPay.cnb_signature(params);
+  const signature = generateSignature(data, privateKey);
 
   res.status(200).json({ data, signature });
+}
+
+function generateSignature(data, privateKey) {
+  const str = privateKey + data + privateKey;
+  const sha1 = crypto.createHash("sha1");
+  sha1.update(str);
+  return sha1.digest("base64");
 }

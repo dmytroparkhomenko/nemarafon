@@ -10,17 +10,18 @@ interface PaymentFormProps {
 }
 
 async function PaymentForm({ programURI }: PaymentFormProps) {
-  const amount = "1";
-
   const programPaymentInfo = await getPostDataForPayment(programURI);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
+    const amount = programPaymentInfo?.programFields.programPrice;
     const response = await fetch("/api/init-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount }),
     });
+
     const { data, signature } = await response.json();
 
     const form = document.createElement("form");
