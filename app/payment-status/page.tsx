@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { db } from "@/app/firebase/config";
 import { doc, setDoc } from "firebase/firestore";
-
 const PaymentStatus = () => {
   const router = useRouter();
   const { data, signature } = router.query;
