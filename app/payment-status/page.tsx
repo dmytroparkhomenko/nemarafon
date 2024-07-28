@@ -1,18 +1,19 @@
+// app/payment-status/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { db } from "@/app/firebase/config";
-import { doc, setDoc } from "firebase/firestore";
+import { useSearchParams } from "next/navigation";
+
 const PaymentStatus = () => {
-  const router = useRouter();
-  const { data, signature } = router.query;
+  const searchParams = useSearchParams();
+  const data = searchParams.get("data");
+  const signature = searchParams.get("signature");
   const [message, setMessage] = useState("Перевірка статусу оплати...");
   const [link, setLink] = useState("");
 
   useEffect(() => {
     if (data && signature) {
-      verifyPaymentStatus(data as string, signature as string);
+      verifyPaymentStatus(data, signature);
     }
   }, [data, signature]);
 
