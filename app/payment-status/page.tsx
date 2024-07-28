@@ -6,8 +6,8 @@ import { useSearchParams } from "next/navigation";
 
 const PaymentStatus = () => {
   const searchParams = useSearchParams();
-  const data = searchParams.get("data");
-  const signature = searchParams.get("signature");
+  const data = searchParams ? searchParams.get("data") : null;
+  const signature = searchParams ? searchParams.get("signature") : null;
   const [message, setMessage] = useState("Перевірка статусу оплати...");
   const [link, setLink] = useState("");
 
