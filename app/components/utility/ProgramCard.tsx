@@ -25,7 +25,7 @@ export default function ProgramCard({
       {programFields.programPrice !== null &&
       programFields.programPrice < 5900 ? (
         <div className="absolute top-0 left-0 w-full py-2 text-center bg-[#c24040] rounded-t-[50px] border-b border-b-white">
-          🎉 Знижка 50%
+          🎉 Супер пропозиція: -50%
         </div>
       ) : null}
       <div>
