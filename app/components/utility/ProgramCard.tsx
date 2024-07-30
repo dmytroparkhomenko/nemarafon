@@ -68,7 +68,7 @@ export default function ProgramCard({
           {programFields.programPrice !== null &&
           programFields.programPrice < 5900 ? (
             <div className="flex flex-row gap-3">
-              <span className="text-lg font-light font-montserrat line-through">
+              <span className="text-lg font-light font-montserrat line-through text-[#cccccc]">
                 ₴ {programFields.programPrice * 2}
               </span>
               <div className="text-4xl font-light font-montserrat">
