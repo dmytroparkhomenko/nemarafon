@@ -10,6 +10,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("Request method:", req.method); // Log the request method
+  console.log("Request body:", req.body); // Log the request body
+
   if (req.method === "POST") {
     const { data, signature } = req.body;
 

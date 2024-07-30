@@ -19,9 +19,15 @@ export default function ProgramCard({
 
   return (
     <div
-      className="flex flex-col justify-between rounded-[40px] py-16 px-12 w-full md:min-w-[600px] min-h-[400px] bg-center bg-no-repeat bg-cover"
+      className="relative flex flex-col justify-between rounded-[40px] py-16 px-12 w-full md:min-w-[600px] min-h-[400px] bg-center bg-no-repeat bg-cover"
       style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     >
+      {programFields.programPrice !== null &&
+      programFields.programPrice < 5900 ? (
+        <div className="absolute top-0 left-0 w-full py-2 text-center bg-[#c24040] rounded-t-[50px] border-b border-b-white">
+          🎉 Знижка 50%
+        </div>
+      ) : null}
       <div>
         <h3 className="md:hidden">
           {title === "Тренування в залі та вдома" ? (
@@ -58,10 +64,22 @@ export default function ProgramCard({
       </div>
 
       <div>
-        <div className="text-center flex flex-col items-center md:mt-5">
-          <div className="text-4xl font-light font-montserrat">
-            ₴ {programFields.programPrice}
-          </div>
+        <div className={`text-center flex flex-col items-center md:mt-5`}>
+          {programFields.programPrice !== null &&
+          programFields.programPrice < 5900 ? (
+            <div className="flex flex-row gap-3">
+              <span className="text-lg font-light font-montserrat line-through">
+                ₴ {programFields.programPrice * 2}
+              </span>
+              <div className="text-4xl font-light font-montserrat">
+                ₴ {programFields.programPrice}
+              </div>
+            </div>
+          ) : (
+            <div className="text-4xl font-light font-montserrat">
+              ₴ {programFields.programPrice}
+            </div>
+          )}
           <Button className="mt-9 md:w-2/3" href={`/program/${uri}`}>
             обрати програму
           </Button>
