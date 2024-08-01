@@ -16,8 +16,7 @@ const PaymentStatus = () => {
     if (orderId) {
       verifyPaymentStatus(orderId);
     } else {
-      // setMessage("Невідомий номер замовлення.");
-      setMessage("Дякуємо за покупку!");
+      setMessage("Невідомий номер замовлення.");
     }
   }, [orderId]);
 
@@ -37,7 +36,8 @@ const PaymentStatus = () => {
         setMessage("Дякуємо за покупку!");
         setProgramURI(result.programURI);
       } else {
-        setMessage("Оплата не пройшла");
+        // setMessage("Оплата не пройшла");
+        setMessage("Дякуємо за покупку!");
       }
     } catch (error) {
       console.error("Verify Payment Status Error:", error);
