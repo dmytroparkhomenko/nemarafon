@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import AppLayout from "@/app/components/layout/AppLayout";
+import Button from "@/app/components/common/Button";
+import Link from "next/link";
 
 const PaymentStatus = () => {
   const searchParams = useSearchParams();
@@ -42,17 +45,19 @@ const PaymentStatus = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl mb-4">{message}</h1>
-      {programURI && (
-        <a
-          href={programURI}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Перейти до програми
-        </a>
-      )}
-    </div>
+    <AppLayout>
+      <div className="flex flex-col items-center justify-center min-h-[100dvh] max-w-[80%] mx-auto mt-[-50px]">
+        <h1 className="text-2xl mb-6 w-full">{message}</h1>
+        {programURI && (
+          <>
+            <Button href={`/program/${programURI}`}>Перейти до програми</Button>
+            <Link className="mt-3 underline text-marine" href="/profile">
+              Перейти до профілю
+            </Link>
+          </>
+        )}
+      </div>
+    </AppLayout>
   );
 };
 
