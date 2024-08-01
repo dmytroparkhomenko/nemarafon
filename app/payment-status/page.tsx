@@ -16,7 +16,8 @@ const PaymentStatus = () => {
     if (orderId) {
       verifyPaymentStatus(orderId);
     } else {
-      setMessage("Невідомий номер замовлення.");
+      // setMessage("Невідомий номер замовлення.");
+      setMessage("Дякуємо за покупку!");
     }
   }, [orderId]);
 
@@ -48,14 +49,19 @@ const PaymentStatus = () => {
     <AppLayout>
       <div className="flex flex-col items-center justify-center min-h-[100dvh] max-w-[80%] mx-auto mt-[-50px]">
         <h1 className="text-2xl mb-6 w-full">{message}</h1>
-        {programURI && (
+        {/* {programURI ? (
           <>
             <Button href={`/program/${programURI}`}>Перейти до програми</Button>
             <Link className="mt-3 underline text-marine" href="/profile">
               Перейти до профілю
             </Link>
           </>
-        )}
+        ) : (
+          <Button className="px-[20px] w-[fit-content]" href={`/`}>
+            Повернутися на головну
+          </Button>
+        )} */}
+        <Button href={`/profile`}>Перейти до профілю</Button>
       </div>
     </AppLayout>
   );
