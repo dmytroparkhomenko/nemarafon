@@ -7,11 +7,10 @@ const PaymentStatus = () => {
   const searchParams = useSearchParams();
   const orderId = searchParams?.get("order_id");
   const [message, setMessage] = useState("Перевірка статусу оплати...");
-  const [link, setLink] = useState("");
+  const [programURI, setProgramURI] = useState<string | null>(null);
 
   useEffect(() => {
     if (orderId) {
-      console.log("OrderId:", orderId);
       verifyPaymentStatus(orderId);
     } else {
       setMessage("Невідомий номер замовлення.");
@@ -32,7 +31,7 @@ const PaymentStatus = () => {
 
       if (result.status === "success") {
         setMessage("Дякуємо за покупку!");
-        setLink(result.programURI);
+        setProgramURI(result.programURI);
       } else {
         setMessage("Оплата не пройшла");
       }
@@ -45,9 +44,9 @@ const PaymentStatus = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-2xl mb-4">{message}</h1>
-      {link && (
+      {programURI && (
         <a
-          href={link}
+          href={programURI}
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
         >
           Перейти до програми

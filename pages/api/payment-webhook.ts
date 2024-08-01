@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import crypto from "crypto";
-import { db } from "@/app/firebase/config"; // Adjust the path according to your project structure
+import { db } from "@/app/firebase/config";
 import { doc, setDoc } from "firebase/firestore";
 
 const LIQPAY_PRIVATE_KEY = process.env.LIQPAY_PRIVATE_KEY!;
@@ -10,7 +10,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    console.log(`req.method === "POST"`);
     const { data, signature } = req.body;
 
     if (!data || !signature) {
@@ -33,24 +32,28 @@ export default async function handler(
       console.log("Payment data:", paymentData);
 
       if (paymentData.status === "success") {
-        console.log("success");
         const userId = paymentData.order_id.split("_")[0];
+        const programURI = paymentData.custom?.programURI;
+
+        if (!programURI) {
+          console.error("Error: Missing programURI");
+          return res.status(400).json({ error: "Missing programURI" });
+        }
+
         const userDoc = doc(db, "users", userId);
         await setDoc(
           userDoc,
           {
-            paymentStatus: paymentData.status,
-            programURI: paymentData.description,
+            programURI: programURI,
             purchaseDate: new Date(),
           },
           { merge: true }
         );
-        res.status(200).json({
-          status: "success",
-          programURI: `/programs/${paymentData.description}`,
-        });
+
+        res
+          .status(200)
+          .json({ status: "success", programURI: `/program/${programURI}` });
       } else {
-        console.log("else");
         res.status(200).json({ status: "failure" });
       }
     } catch (error) {

@@ -18,7 +18,7 @@ export default async function handler(
 
     console.log(orderId);
     const params = {
-      public_key: "i68693430288",
+      public_key: LIQPAY_PUBLIC_KEY,
       version: "3",
       action: "status",
       order_id: orderId,
