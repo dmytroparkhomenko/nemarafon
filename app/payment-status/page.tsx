@@ -1,4 +1,3 @@
-// app/payment-status/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,31 +5,40 @@ import { useSearchParams } from "next/navigation";
 
 const PaymentStatus = () => {
   const searchParams = useSearchParams();
-  const data = searchParams ? searchParams.get("data") : null;
-  const signature = searchParams ? searchParams.get("signature") : null;
+  const orderId = searchParams?.get("order_id");
   const [message, setMessage] = useState("Перевірка статусу оплати...");
   const [link, setLink] = useState("");
 
   useEffect(() => {
-    if (data && signature) {
-      verifyPaymentStatus(data, signature);
-    }
-  }, [data, signature]);
-
-  const verifyPaymentStatus = async (data: string, signature: string) => {
-    const res = await fetch("/api/payment-verify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data, signature }),
-    });
-
-    const result = await res.json();
-
-    if (result.status === "success") {
-      setMessage("Дякуємо за покупку!");
-      setLink(result.programURI);
+    if (orderId) {
+      console.log("OrderId:", orderId);
+      verifyPaymentStatus(orderId);
     } else {
-      setMessage("Оплата не пройшла");
+      setMessage("Невідомий номер замовлення.");
+    }
+  }, [orderId]);
+
+  const verifyPaymentStatus = async (orderId: string) => {
+    try {
+      const res = await fetch("/api/payment-status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId }),
+      });
+
+      const result = await res.json();
+
+      console.log("Verify Payment Status Result:", result);
+
+      if (result.status === "success") {
+        setMessage("Дякуємо за покупку!");
+        setLink(result.programURI);
+      } else {
+        setMessage("Оплата не пройшла");
+      }
+    } catch (error) {
+      console.error("Verify Payment Status Error:", error);
+      setMessage("Сталася помилка під час перевірки статусу оплати.");
     }
   };
 

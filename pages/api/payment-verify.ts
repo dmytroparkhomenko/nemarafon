@@ -1,6 +1,6 @@
 // pages/api/payment-verify.ts
 import type { NextApiRequest, NextApiResponse } from "next";
-import { db } from "@/app/firebase/config"; // Ensure the correct import path
+import { db } from "@/app/firebase/config";
 import crypto from "crypto";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -10,9 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("Request method:", req.method); // Log the request method
-  console.log("Request body:", req.body); // Log the request body
-
   if (req.method === "POST") {
     const { data, signature } = req.body;
 
@@ -38,10 +35,12 @@ export default async function handler(
           },
           { merge: true }
         );
-        res.status(200).json({
-          status: "success",
-          programURI: `/programs/${paymentData.description}`,
-        });
+        res
+          .status(200)
+          .json({
+            status: "success",
+            programURI: `/programs/${paymentData.description}`,
+          });
       } else {
         res.status(200).json({ status: "failure" });
       }
