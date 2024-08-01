@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       order_id: orderId,
       result_url: `https://nemarafon.vercel.app/payment-status?order_id=${orderId}`,
       server_url: "https://nemarafon.vercel.app/api/payment-webhook",
-      custom: { programURI },
+      product_name: programURI,
     };
 
     const data = Buffer.from(JSON.stringify(params)).toString("base64");

@@ -33,7 +33,7 @@ export default async function handler(
 
       if (paymentData.status === "success") {
         const userId = paymentData.order_id.split("_")[0];
-        const programURI = paymentData.custom?.programURI;
+        const programURI = paymentData.product_name;
 
         if (!programURI) {
           console.error("Error: Missing programURI");
