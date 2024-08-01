@@ -16,6 +16,7 @@ export default async function handler(
       return res.status(400).json({ error: "orderId is required" });
     }
 
+    console.log(orderId);
     const params = {
       public_key: LIQPAY_PUBLIC_KEY,
       version: "3",

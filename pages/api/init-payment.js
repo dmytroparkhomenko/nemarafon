@@ -182,12 +182,12 @@ export default async function handler(req, res) {
       public_key: publicKey,
       version: "3",
       action: "pay",
-      amount: amount.toString(), // Ensure amount is a string
+      amount: amount.toString(),
       currency: "UAH",
       description: "Test Payment",
       order_id: orderId,
-      result_url: `https://nemarafon.vercel.app/payment-status?order_id=${orderId}`, // Replace with your actual domain
-      server_url: "https://nemarafon.vercel.app/api/payment-webhook", // Replace with your actual server URL
+      result_url: `https://nemarafon.vercel.app/payment-status?order_id=${orderId}`,
+      server_url: "https://nemarafon.vercel.app/api/payment-webhook",
     };
 
     const data = Buffer.from(JSON.stringify(params)).toString("base64");
