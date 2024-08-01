@@ -174,6 +174,7 @@ export default async function handler(req, res) {
     const privateKey = process.env.LIQPAY_PRIVATE_KEY;
 
     if (!amount || !orderId) {
+      console.error("Error: Missing amount or orderId");
       return res.status(400).json({ error: "Missing amount or orderId" });
     }
 
@@ -185,12 +186,15 @@ export default async function handler(req, res) {
       currency: "UAH",
       description: "Test Payment",
       order_id: orderId,
-      result_url: `http://localhost:3000/payment-status?order_id=${orderId}`,
-      server_url: "http://localhost:3000/api/payment-webhook",
+      result_url: `/payment-status?order_id=${orderId}`, // Replace with your actual domain
+      server_url: "/api/payment-webhook", // Replace with your actual server URL
     };
 
     const data = Buffer.from(JSON.stringify(params)).toString("base64");
     const signature = generateSignature(data, privateKey);
+
+    console.log("Generated data:", data);
+    console.log("Generated signature:", signature);
 
     res.status(200).json({ data, signature });
   } catch (error) {

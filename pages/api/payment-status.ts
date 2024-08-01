@@ -12,7 +12,7 @@ export default async function handler(
     const { orderId } = req.body;
 
     if (!orderId) {
-      console.error("Missing orderId");
+      console.error("Error: Missing orderId");
       return res.status(400).json({ error: "orderId is required" });
     }
 
@@ -25,6 +25,9 @@ export default async function handler(
 
     const data = Buffer.from(JSON.stringify(params)).toString("base64");
     const signature = generateSignature(data, LIQPAY_PRIVATE_KEY);
+
+    console.log("Generated data for status check:", data);
+    console.log("Generated signature for status check:", signature);
 
     try {
       const response = await fetch("https://www.liqpay.ua/api/request", {
@@ -40,16 +43,16 @@ export default async function handler(
 
       const result = await response.json();
 
-      console.log("LiqPay API response:", result);
+      console.log("LiqPay API response for status check:", result);
 
       if (result.status === "success") {
         res.status(200).json(result);
       } else {
-        console.error("LiqPay API Error:", result);
+        console.error("LiqPay API Error on status check:", result);
         res.status(400).json(result);
       }
     } catch (error) {
-      console.error("Fetch Error:", error);
+      console.error("Fetch Error on status check:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   } else {
