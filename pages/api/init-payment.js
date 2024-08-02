@@ -19,8 +19,8 @@ export default async function handler(req, res) {
       currency: "UAH",
       description: `Покупка програми ${programTitle}`,
       order_id: orderId,
-      result_url: `https://nemarafon.vercel.app/payment-status?order_id=${orderId}`,
-      server_url: "https://nemarafon.vercel.app/api/payment-webhook",
+      result_url: `https://nemarafon-butenko.com/payment-status?order_id=${orderId}`,
+      server_url: "https://nemarafon-butenko.com/api/payment-webhook",
       product_name: programURI,
     };
 

@@ -20,8 +20,8 @@ const TermsOfService = () => {
               1.1. Фізична особа-підприємець БУТЕНКО АНАСТАСІЯ МИКОЛАЇВНА,
               надалі "Продавець", надає Покупцеві можливість отримати доступ до
               платних відео-тренувань на сайті
-              <a href="https://nemarafon.vercel.app">
-                https://nemarafon.vercel.app
+              <a href="https://nemarafon-butenko.com">
+                https://nemarafon-butenko.com
               </a>
               .
             </p>
@@ -30,8 +30,8 @@ const TermsOfService = () => {
               2.1. Доступ до платних відео-тренувань надається виключно на
               тимчасове користування, відповідно до цього Договору та умов,
               встановлених на сайті{" "}
-              <a href="https://nemarafon.vercel.app">
-                https://nemarafon.vercel.app
+              <a href="https://nemarafon-butenko.com">
+                https://nemarafon-butenko.com
               </a>
               .
             </p>
@@ -53,8 +53,8 @@ const TermsOfService = () => {
             <p>
               4.1. Продавець зобов'язується забезпечувати Покупця доступом до
               платних відео-тренувань на сайті{" "}
-              <a href="https://nemarafon.vercel.app">
-                https://nemarafon.vercel.app
+              <a href="https://nemarafon-butenko.com">
+                https://nemarafon-butenko.com
               </a>{" "}
               відповідно до умов цього Договору.
             </p>
@@ -93,8 +93,8 @@ const TermsOfService = () => {
               8.1. Продавець має право вносити зміни до умов даного Договору.
               Про внесення змін Продавець повідомляє Покупця на відповідній
               розділ з контактами, або веб форму для зв'язку на сайті{" "}
-              <a href="https://nemarafon.vercel.app">
-                https://nemarafon.vercel.app
+              <a href="https://nemarafon-butenko.com">
+                https://nemarafon-butenko.com
               </a>{" "}
               або на відповідну електронну адресу.
             </p>
