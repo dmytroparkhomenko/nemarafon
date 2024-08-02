@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="w-full px-5 md:px-24 py-12 md:py-16 bg-cover bg-right z-0 bg-[url('/sources/footer-bg.jpg')] rounded-3xl"
+      className="w-full px-5 md:px-24 py-12 md:py-16 bg-cover bg-right z-0 bg-[url('/sources/footer-bg.webp')] rounded-3xl"
     >
       <div className="hidden md:block mx-auto">
         <Logo isCentered={true} />
