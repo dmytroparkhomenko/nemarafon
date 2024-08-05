@@ -63,9 +63,7 @@ export default function Header() {
               <Langs />
               <Link href="/profile" className="flex items-center gap-3">
                 <Profile />
-                {!loading ? (
-                  <span className="uppercase">{user?.displayName}</span>
-                ) : null}
+                {!loading ? <span>{user?.displayName}</span> : null}
               </Link>
             </div>
           )}

@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <>
       <div className="relative h-screen overflow-y-auto bg-[#140702]">
-        <div className="absolute w-full h-[100vh] md:h-[200vh] bg-cover bg-top z-0 bg-[url('/sources/main-mobile-bg.webp')] md:bg-[url('/sources/main-bg.webp')]" />
+        <div className="absolute w-full h-[100vh] md:h-[200vh] bg-cover bg-top z-0 bg-[url('/sources/main-mobile-bg.webp')] md:bg-[url('/sources/main-bg.jpg')]" />
         <div className="absolute top-0 w-full z-10 h-[2000px] md:h-[4300px] bg-main-screen-gradient" />
         <div className="relative z-10 px-5 md:px-24 py-12 md:py-16">
           <div className="min-h-screen">
