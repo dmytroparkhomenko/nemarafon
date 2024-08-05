@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (docSnap.exists()) {
           const data = docSnap.data();
           const purchaseDate = data.purchaseDate.toDate();
-          const expirationDate = addWeeks(purchaseDate, 6);
+          const expirationDate = addWeeks(purchaseDate, 7);
           const isAdmin = data.isAdmin === true;
 
           setPurchasedProgram({
