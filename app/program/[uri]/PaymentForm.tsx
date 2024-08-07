@@ -108,7 +108,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ programURI }) => {
             className="form-checkbox h-5 w-5 mr-3"
           />
           <label className="block text-sm font-medium">
-            Придбати 3 НЕмарафони одразу!
+            Придбати 3 НЕмарафони одразу зі знижкою 20%!
           </label>
         </div>
       )}
@@ -141,7 +141,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ programURI }) => {
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1">Загальна сума</label>
         <p className="text-sm">
-          {isChecked ? 14699 : programPaymentInfo?.programFields.programPrice}{" "}
+          {isChecked ? "14699" : programPaymentInfo?.programFields.programPrice}
           грн.
         </p>
       </div>
