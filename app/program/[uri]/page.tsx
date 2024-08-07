@@ -12,9 +12,7 @@ import AppLayout from "@/app/components/layout/AppLayout";
 
 const hasProgramExpired = (expiryDate: string) => {
   const [day, month, year] = expiryDate.split(".").map(Number);
-
   const expirationDate = new Date(year, month - 1, day);
-
   const currentDate = new Date();
 
   return expirationDate < currentDate;

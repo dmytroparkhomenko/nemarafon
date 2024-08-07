@@ -80,9 +80,18 @@ export default function ProgramCard({
               ₴ {programFields.programPrice}
             </div>
           )}
-          <Button className="mt-9 md:w-2/3" href={`/program/${uri}`}>
+          <Button className="md:w-2/3 mt-9" href={`/program/${uri}`}>
             обрати програму
           </Button>
+          {/* hardcode */}
+          {programFields.programPrice == 5900 ? (
+            <Button
+              className="mt-3 md:w-2/3 bg-transparent border border-marine normal-case	"
+              href={`/program/${uri}`}
+            >
+              Візьму 3 за 14699грн!
+            </Button>
+          ) : null}
         </div>
       </div>
     </div>

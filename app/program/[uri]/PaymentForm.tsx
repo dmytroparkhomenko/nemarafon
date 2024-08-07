@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Visa from "@/app/components/symbols/Visa.svg";
 import Mastercard from "@/app/components/symbols/Mastercard.svg";
 import Privat from "@/app/components/symbols/Privat.svg";
@@ -10,18 +12,45 @@ interface PaymentFormProps {
   programURI: string;
 }
 
-async function PaymentForm({ programURI }: PaymentFormProps) {
+const PaymentForm: React.FC<PaymentFormProps> = ({ programURI }) => {
   const { user } = useAuth();
-  const programPaymentInfo = await getPostDataForPayment(programURI);
+  const [programPaymentInfo, setProgramPaymentInfo] = useState<any>(null);
 
-  const handleSubmit = async (event: any) => {
+  // hardcode
+  const [isChecked, setIsChecked] = useState(false);
+  const [programDuration, setProgramDuration] = useState(7);
+  // ---
+
+  // program data fetching
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPostDataForPayment(programURI);
+      setProgramPaymentInfo(data);
+    };
+
+    fetchData();
+  }, [programURI]);
+
+  // hardcode
+  useEffect(() => {
+    if (isChecked) {
+      setProgramDuration(21);
+    } else {
+      setProgramDuration(7);
+    }
+  }, [isChecked]);
+  // ---
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!user) {
       return;
     }
 
-    const amount = programPaymentInfo?.programFields.programPrice;
+    const amount = isChecked
+      ? 14699
+      : programPaymentInfo?.programFields.programPrice;
     const programTitle = programPaymentInfo?.title;
     const orderId = `${user.uid}_${Date.now()}_${Math.random()
       .toString(36)
@@ -57,6 +86,10 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
     form.submit();
   };
 
+  if (!programPaymentInfo) {
+    return <div>Завантаження...</div>;
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -65,6 +98,20 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
       <div className="text-center mb-6">
         <h2 className="text-xl">ДЕТАЛІ ПРОГРАМИ</h2>
       </div>
+
+      {programPaymentInfo?.title == "НЕмарафон 2024" && (
+        <div className="mb-6 flex items-center">
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+            className="form-checkbox h-5 w-5 mr-3"
+          />
+          <label className="block text-sm font-medium">
+            Придбати 3 НЕмарафони одразу!
+          </label>
+        </div>
+      )}
 
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1">
@@ -75,17 +122,27 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
         </p>
       </div>
 
+      {isChecked && (
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">
+            Кількість потоків
+          </label>
+          <p className="text-sm">3</p>
+        </div>
+      )}
+
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1">
           Доступ до програми
         </label>
-        <p className="text-sm">7 тижнів</p>
+        <p className="text-sm">{programDuration} тижнів</p>
       </div>
 
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1">Загальна сума</label>
         <p className="text-sm">
-          {programPaymentInfo?.programFields.programPrice} грн.
+          {isChecked ? 14699 : programPaymentInfo?.programFields.programPrice}{" "}
+          грн.
         </p>
       </div>
 
@@ -93,7 +150,7 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
         <label className="block text-sm font-medium mb-2">
           Оплата за допомогою
         </label>
-        <div className="flex gap-3">
+        <div className="flex gap-3 mb-4">
           <Image
             src={Visa}
             alt="visa"
@@ -101,12 +158,12 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
           />
           <Image
             src={Mastercard}
-            alt="visa"
+            alt="mastercard"
             className="w-[30px] md:w-[40px] h-auto"
           />
           <Image
             src={Privat}
-            alt="visa"
+            alt="privat"
             className="w-[17px] md:w-[27px] h-auto"
           />
         </div>
@@ -120,6 +177,6 @@ async function PaymentForm({ programURI }: PaymentFormProps) {
       </button>
     </form>
   );
-}
+};
 
 export default PaymentForm;
